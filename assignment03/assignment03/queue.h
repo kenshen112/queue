@@ -283,7 +283,7 @@ void queue<T>::push(const T & element)
 template <class T>
 void queue <T> ::clear()
 {
-   data = nullptr; // This could error out try data = NULL;
+   data = NULL; // This could error out try data = NULL;
    delete[] data;
    numPush = 0;
    numPop = 0;
@@ -307,4 +307,4 @@ template<class T>
 
 
 }// namespace custom
-#endif /* STACK_H */
+#endif /* QUEUE_H */
