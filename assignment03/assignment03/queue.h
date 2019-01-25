@@ -155,7 +155,7 @@ queue<T>::queue(const queue<T>& rhs)
    numPop = 0;
    numPush = numItems;
 
-   int tempFront = rhs.myFront;
+   int tempFront = rhs.numPop;
    // copy the items over one at a time using the assignment operator
    for (int i = 0; i < rhs.numItems; i++, tempFront = (tempFront + 1) % maxCapacity)
       data[i] = rhs.data[tempFront];
