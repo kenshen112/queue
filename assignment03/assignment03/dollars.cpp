@@ -10,6 +10,7 @@
 #include <iostream>  // for OSTREAM and ISTREAM
 #include <cassert>   // for ASSERT
 #include "dollars.h" // for the class definition
+
 using namespace std;
 
 /********************************************
