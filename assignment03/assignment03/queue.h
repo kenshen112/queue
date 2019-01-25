@@ -57,7 +57,7 @@ T& queue<T>::front()
 
 	else
 	{
-		return queueArray[numPop];
+		return data[numPop];
 	}
 }
 
@@ -71,12 +71,12 @@ T& queue<T>::back()
 
 	else if (myBack == 0)
 	{
-		return queueArray[maxCapacity - 1];
+		return data[numCapacity - 1];
 	}
 
 	else
 	{
-		return queueArray[numPush - 1];
+		return data[numPush - 1];
 	}
 }
 
@@ -89,7 +89,7 @@ void queue <T>::pop()
 	}
 
 	numCapacity--;
-	numPop = (numPop + 1) % maxCapacity;
+	numPop = (numPop + 1) % numCapacity;
 }
 
 /********************************************
