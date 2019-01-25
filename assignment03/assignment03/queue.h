@@ -9,6 +9,7 @@
 ************************************************************************/
 #ifndef QUEUE_H
 #define QUEUE_H
+#include <assert.h>
 namespace custom {
 template <class T> class queue {
 private:
