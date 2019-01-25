@@ -9,6 +9,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 #include <assert.h>
+
 namespace custom {
 template <class T> 
 class queue {
@@ -207,7 +208,7 @@ int queue<T>::size()
 template<class T>
 int queue<T>::resize()
 {
-	T *temp;
+	T *temp = nullptr;
 
 	//step 1: if maxCapacitry is 0 alloc to 1 change capacity done.
 	//step 2: multiply cap by 2 to double make a new variable to conserve data.
