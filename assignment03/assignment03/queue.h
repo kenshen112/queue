@@ -10,7 +10,8 @@
 #define QUEUE_H
 #include <assert.h>
 namespace custom {
-template <class T> class queue {
+template <class T> 
+class queue {
 private:
    T *data;
    int numPush;
