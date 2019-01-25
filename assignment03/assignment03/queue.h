@@ -138,8 +138,38 @@ int queue<T>::size()
 template<class T>
 int queue<T>::resize()
 {
-   //Stub
-   return 0;
+	T *temp;
+
+	//step 1: if maxCapacitry is 0 alloc to 1 change capacity done.
+	//step 2: multiply cap by 2 to double make a new variable to conserve data.
+	
+	if (numCapacity == 0) //step 1.
+	{
+		numCapacity = 1;
+		queueArray = new T[numCapacity];
+
+		return;
+	}
+
+	else if (numItems == maxCapacity) //step 2.
+	{
+		maxCapacity = maxCapacity * 2;
+
+		temp = new T[maxCapacity];
+
+		int tempFront = myFront;
+
+		for (int i = 0; i < numItems; i++)
+		{
+			temp[i] = queueArray[i];
+		}
+
+		delete[] queueArray;
+	}
+
+	queueArray = temp;
+
+	return;
 }
 
 /********************************************
@@ -169,7 +199,14 @@ int queue<T>::iTail()
 template<class T>
 void queue<T>::push(const T & element)
 {
-   //Stub
+	if (numItems == numCapacity)
+	{
+		realloc();
+	}
+
+	queueArray[myBack] = item;
+	myBack = (myBack + 1) % numCapacity;
+	numItems++;
 }
 
 /********************************************
@@ -179,7 +216,7 @@ void queue<T>::push(const T & element)
 template <class T>
 void queue <T> ::clear()
 {
-   data = nullptr;
+   data = nullptr; // This could error out try data = NULL;
    delete[] data;
    numPush = 0;
    numPop = 0;
