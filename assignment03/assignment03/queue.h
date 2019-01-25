@@ -1,4 +1,3 @@
-#pragma once
 /***********************************************************************
 * Header:
 *    QUEUE
@@ -69,7 +68,7 @@ T& queue<T>::back()
 		throw "ERROR: Unable to reference the element from an empty Queue";
 	}
 
-	else if (myBack == 0)
+	else if (numPush == 0)
 	{
 		return data[numCapacity - 1];
 	}
