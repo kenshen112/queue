@@ -36,11 +36,61 @@ public:
 
    //Function Prototypes
    T & operator = (const queue <T> & rhs);
+   T & front();
+   T & back();
    int size();
    void push(const T &element);
    void clear();
+   void pop();
    bool empty();
 };
+
+
+
+template <class T>
+T& queue<T>::front()
+{
+	if (numCapacity == 0)
+	{
+		throw "ERROR: Unable to reference the element from an empty Queue";
+	}
+
+	else
+	{
+		return queueArray[myFront];
+	}
+}
+
+template <class T>
+T& queue<T>::back()
+{
+	if (empty())
+	{
+		throw "ERROR: Unable to reference the element from an empty Queue";
+	}
+
+	else if (myBack == 0)
+	{
+		return queueArray[maxCapacity - 1];
+	}
+
+	else
+	{
+		return queueArray[myBack - 1];
+	}
+}
+
+template <class T>
+void queue <T>::pop()
+{
+	if (numItems == 0)
+	{
+		throw "ERROR: Unable to pop from an empty Queue";
+	}
+
+	numItems--;
+	myFront = (myFront + 1) % maxCapacity;
+}
 
 /********************************************
  * CONSTRUCTOR: DEFAULT
@@ -168,7 +218,7 @@ int queue<T>::resize()
 		numCapacity = 1;
 		data = new T[numCapacity];
 
-		return;
+		return numCapacity;
 	}
 
 	else if (numPush == numCapacity) //step 2.
@@ -189,7 +239,7 @@ int queue<T>::resize()
 
 	data = temp;
 
-	return;
+	return numCapacity;
 }
 
 /********************************************
