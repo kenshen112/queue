@@ -269,8 +269,8 @@ int queue<T>::iTail()
 template<class T>
 void queue<T>::push(const T & element)
 {
-	if (size() <= capacity()) {
-		resize(numCapacity *= 2);
+	if (size() <= numCapacity) {
+		resize();
 	}
 	data[iTail()] = element;
 	numPop = (numPop + 1) % numCapacity;
