@@ -17,6 +17,7 @@ private:
    int numPop;
    int numCapacity;
    bool isEmpty;
+   int numItems;
 
    //Private function prototypes
    int resize();
@@ -52,6 +53,7 @@ queue<T>::queue()
    numCapacity = 0;
    data = new T[numCapacity];
    isEmpty = true;
+   numItems = 0;
 }
 
 /********************************************
@@ -64,6 +66,8 @@ queue<T>::queue(int c)
    numPop = 0;
    numCapacity = c;
    data = new T[numCapacity];
+   isEmpty = true;
+   numItems = 0;
 }
 
 /********************************************
@@ -72,24 +76,39 @@ queue<T>::queue(int c)
 template<class T>
 queue<T>::queue(const queue<T>& rhs)
 {
-   //TODO: KENYON: rework this for queue
+   assert(rhs.numCapacity >= 0);
+
+   // do nothing if there is nothing to do
+   if (rhs.numCapacity == 0)
+   {
+      numCapacity = 0;
+      numItems = 0;
+      numPush = 0;
+      numPop = 0;
+      data = NULL;
+      return;
+   }
+
+   // attempt to allocate
    try
    {
-      if (numElements != rhs.numElements) {
-         data = new T[rhs.numElements];
-      }
-
-      for (int i = 0; i < rhs.size(); i++) {
-         data[i] = rhs.data[i];
-      }
-
-      numCapacity = rhs.numCapacity;
-      numElements = rhs.numElements;
+      data = new T[rhs.numCapacity];
    }
-   catch (std::bad_alloc &er) {
-      throw(" ERROR: Unable to allocate a new buffer for queue");
-      exit(1);
+   catch (std::bad_alloc)
+   {
+      throw "ERROR: Unable to allocate buffer";
    }
+
+   // copy over the capacity and size
+   numCapacity = rhs.numCapacity;
+   numItems = rhs.numItems;
+   numPop = 0;
+   numPush = numItems;
+
+   int tempFront = rhs.myFront;
+   // copy the items over one at a time using the assignment operator
+   for (int i = 0; i < rhs.numItems; i++, tempFront = (tempFront + 1) % maxCapacity)
+      data[i] = rhs.data[tempFront];
 }
 
 /********************************************
@@ -119,6 +138,7 @@ T & queue<T>::operator=(const queue<T> & rhs)
    {
       push(rhs.data[i % rhs.numCapacity]);
    }
+   return *this;
 }
 
 /********************************************
