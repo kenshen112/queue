@@ -40,7 +40,7 @@ public:
  /********************************************
  * ASSIGNMENT OPERATOR
  *******************************************/
-   queue<T> & operator =(queue<T> & rhs)
+   queue<T> & operator=(queue<T> & rhs)
    {
       numPush = 0;
       numPop = 0;
@@ -214,7 +214,7 @@ int queue<T>::resize(int numCapacity)
 	
 	if (numCapacity == 0) //step 1.
 	{
-		numCapacity = 1;
+		numCapacity = 2;
 		data = new T[numCapacity];
 
 		return numCapacity;
@@ -257,8 +257,8 @@ int queue<T>::iHead()
  *******************************************/
 template<class T>
 int queue<T>::iTail()
-{
-   return (numPush - 1) % numCapacity;
+{  
+   return (numPush) % numCapacity;
 }
 
 /********************************************
@@ -270,6 +270,7 @@ void queue<T>::push(const T & element)
 {
 	if (size() <= numCapacity) {
 		resize(numCapacity);
+		std::cout << "resize" << std::endl;
 	}
 	data[iTail()] = element;
 	numPop = (numPop + 1) % numCapacity;
@@ -293,17 +294,8 @@ void queue <T> ::clear()
  * queue : EMPTY
  * Checks if queue is empty
  *******************************************/
-template<class T>
- bool queue<T>::empty()
-{
-    if (size() == 0) {
-       isEmpty = true;
-    }
-    else {
-       isEmpty = false;
-    }
-    return isEmpty;
-}
+ template<class T>
+   bool queue<T>::empty(){ return size() == 0; }
 
 
 }// namespace custom
