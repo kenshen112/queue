@@ -166,7 +166,7 @@ int queue<T>::resize()
 	if (numCapacity == 0) //step 1.
 	{
 		numCapacity = 1;
-		queueArray = new T[numCapacity];
+		data = new T[numCapacity];
 
 		return;
 	}
@@ -181,13 +181,13 @@ int queue<T>::resize()
 
 		for (int i = 0; i < numPush; i++)
 		{
-			temp[i] = queueArray[i];
+			temp[i] = data[i];
 		}
 
-		delete[] queueArray;
+		delete[] data;
 	}
 
-	queueArray = temp;
+	data = temp;
 
 	return;
 }
@@ -219,12 +219,10 @@ int queue<T>::iTail()
 template<class T>
 void queue<T>::push(const T & element)
 {
-	if (numPush == numCapacity)
-	{
-		realloc();
+	if (size() <= capacity()) {
+		resize(numCapacity *= 2);
 	}
-
-	queueArray[numPop] = element;
+	data[iTail()] = element;
 	numPop = (numPop + 1) % numCapacity;
 	numPush++;
 }
