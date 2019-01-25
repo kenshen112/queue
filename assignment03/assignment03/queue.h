@@ -37,10 +37,9 @@ public:
    ~queue();
 
    
-   /********************************************
+ /********************************************
  * ASSIGNMENT OPERATOR
  *******************************************/
-   template<class T>
    queue<T> & operator =(const queue<T> & rhs)
    {
       numPush = 0;
