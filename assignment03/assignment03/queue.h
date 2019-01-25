@@ -225,7 +225,7 @@ int queue<T>::resize()
 	{
 		numCapacity = numCapacity * 2;
 
-		temp = new T[maxCapacity];
+		temp = new T[numCapacity];
 
 		int tempPush = numPush;
 
