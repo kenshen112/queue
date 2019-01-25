@@ -22,7 +22,7 @@ private:
    int numItems;
 
    //Private function prototypes
-   int resize();
+   int resize(int numCapacity);
    int iHead();
    int iTail();
 public:
@@ -205,7 +205,7 @@ int queue<T>::size()
  * resizes the queue buffer
  *******************************************/
 template<class T>
-int queue<T>::resize()
+int queue<T>::resize(int numCapacity)
 {
 	T *temp = nullptr;
 
@@ -269,7 +269,7 @@ template<class T>
 void queue<T>::push(const T & element)
 {
 	if (size() <= numCapacity) {
-		resize();
+		resize(numCapacity);
 	}
 	data[iTail()] = element;
 	numPop = (numPop + 1) % numCapacity;
