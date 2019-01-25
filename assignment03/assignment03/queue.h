@@ -40,7 +40,7 @@ public:
  /********************************************
  * ASSIGNMENT OPERATOR
  *******************************************/
-   queue<T> & operator =(const queue<T> & rhs)
+   queue<T> & operator =(queue<T> & rhs)
    {
       numPush = 0;
       numPop = 0;
