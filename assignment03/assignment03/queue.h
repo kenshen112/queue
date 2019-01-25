@@ -34,8 +34,28 @@ public:
    //Destructor
    ~queue();
 
+   
+   /********************************************
+ * ASSIGNMENT OPERATOR
+ *******************************************/
+   template<class T>
+   queue<T> & operator =(const queue<T> & rhs)
+   {
+      numPush = 0;
+      numPop = 0;
+
+      if (numCapacity < rhs.size())
+      {
+         resize(rhs.size());
+      }
+
+      for (int i = rhs.numPop; i < rhs.numPush; i++)
+      {
+         push(rhs.data[i % rhs.numCapacity]);
+      }
+      return *this;
+   }
    //Function Prototypes
-   T & operator = (const queue <T> & rhs);
    T & front();
    T & back();
    int size();
@@ -44,8 +64,6 @@ public:
    void pop();
    bool empty();
 };
-
-
 
 template <class T>
 T& queue<T>::front()
@@ -157,7 +175,7 @@ queue<T>::queue(const queue<T>& rhs)
 
    int tempFront = rhs.numPop;
    // copy the items over one at a time using the assignment operator
-   for (int i = 0; i < rhs.numItems; i++, tempFront = (tempFront + 1) % maxCapacity)
+   for (int i = 0; i < rhs.numItems; i++, tempFront = (tempFront + 1) % numCapacity)
       data[i] = rhs.data[tempFront];
 }
 
@@ -170,26 +188,6 @@ inline queue<T>::~queue()
    clear();
 }
 
-/********************************************
- * ASSIGNMENT OPERATOR
- *******************************************/
-template<class T>
-T & queue<T>::operator=(const queue<T> & rhs)
-{
-   numPush = 0;
-   numPop = 0;
-
-   if (numCapacity < rhs.size())
-   {
-      resize(rhs.size());
-   }
-
-   for (int i = rhs.numPop; i < rhs.numPush; i++)
-   {
-      push(rhs.data[i % rhs.numCapacity]);
-   }
-   return *this;
-}
 
 /********************************************
  * Queue : SIZE
