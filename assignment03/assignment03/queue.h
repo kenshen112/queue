@@ -57,7 +57,7 @@ T& queue<T>::front()
 
 	else
 	{
-		return queueArray[myFront];
+		return queueArray[numPop];
 	}
 }
 
@@ -76,20 +76,20 @@ T& queue<T>::back()
 
 	else
 	{
-		return queueArray[myBack - 1];
+		return queueArray[numPush - 1];
 	}
 }
 
 template <class T>
 void queue <T>::pop()
 {
-	if (numItems == 0)
+	if (numCapacity == 0)
 	{
 		throw "ERROR: Unable to pop from an empty Queue";
 	}
 
-	numItems--;
-	myFront = (myFront + 1) % maxCapacity;
+	numCapacity--;
+	numPop = (numPop + 1) % maxCapacity;
 }
 
 /********************************************
