@@ -239,7 +239,7 @@ int queue<T>::size()
       try {
          T *dataNew = new T[capacityNew];
 	 
-         for (int i = 0; i < size(); i++) {
+         for (int i = numPop; i < numPush; i++) {
             dataNew[i] = data[i];
          }
 
