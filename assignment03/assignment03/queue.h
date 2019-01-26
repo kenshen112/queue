@@ -44,7 +44,7 @@ public:
  *******************************************/
    queue<T> & operator=(queue<T> & rhs)
    {
-     /*if (rhs.numCapacity == 0)
+     if (rhs.numCapacity == 0)
        {
 	 numCapacity = 0;
 	 numItems = 0;
@@ -53,7 +53,7 @@ public:
 	 numPop = 0;
 	 numPush = 0;
 	 return *this;
-	 }*/
+	 }
 
      delete [] data;
 
@@ -245,7 +245,7 @@ inline queue<T>::~queue()
 template<class T>
 int queue<T>::size()
 {
-   return numPush - numPop;
+  return numPush - numPop;
 }
 
 /********************************************
@@ -269,7 +269,7 @@ int queue<T>::size()
 
          data = dataNew;
          numCapacity = capacityNew;
-	 std::cout << "bad Alloc" << std::endl;
+	 std::cout << "Resize" << std::endl;
       }
       catch (std::bad_alloc) {
          throw "ERROR: Unable to allocate new buffer for queue";
@@ -350,12 +350,17 @@ void queue<T>::push(const T & element)
 {
    if (numCapacity == 0)
    {
-      //numCapacity = 1;
+     //numCapacity = 1;
       resize(1);
-      //data = new T[numElements];
+      //data = new T[numCapacity];
    }
    if (size() <= numCapacity) 
    {
+     std::cout << "Size: " << size() << std::endl
+	       << "Push: " << numPush << std::endl
+               << "Pop: " << numPop << std::endl
+               << "Capacity: " << numCapacity << std::endl;
+     
       resize(numCapacity *= 2);
    }
    std::cout << iTail() << "\n";
