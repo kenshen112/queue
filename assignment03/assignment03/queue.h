@@ -20,11 +20,13 @@ private:
    int numCapacity;
    bool isEmpty;
    int numItems;
+   bool isFull;
 
    //Private function prototypes
    int resize(int numCapacity);
    int iHead();
    int iTail();
+   bool full();
 public:
    //Constructors
    //Default Cosntructor
@@ -249,7 +251,7 @@ template<class T>
 int queue<T>::iHead()
 {
    
-   return numPop % numCapacity;
+   return (numPop + 1) % numCapacity;
 }
 
 /********************************************
@@ -261,6 +263,21 @@ int queue<T>::iTail()
 {  
    (numPush++) % numCapacity;
    return numPush;
+}
+
+template<class T>
+bool queue<T>::full()
+{
+   if (numPush == iHead())
+   {
+      isFull = true;
+   }
+   else
+   {
+      isFull = false;
+   }
+      
+   return isFull;
 }
 
 /********************************************
@@ -298,7 +315,6 @@ void queue <T> ::clear()
  *******************************************/
  template<class T>
    bool queue<T>::empty(){ return size() == 0; }
-
 
 }// namespace custom
 #endif /* QUEUE_H */
