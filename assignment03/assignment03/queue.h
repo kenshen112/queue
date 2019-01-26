@@ -34,7 +34,7 @@ public:
    //Non-default cosntructor
    queue(int c);
    //Copy Constructor
-   queue(const queue<T> &rhs);
+   queue(queue<T> &rhs);
    //Destructor
    ~queue();
 
@@ -123,7 +123,7 @@ T& queue<T>::back()
 
 	else
 	{
-      return data[numPush];
+	  return data[numPush];
 	}
 }
 
@@ -173,47 +173,35 @@ queue<T>::queue(int c)
  * CONSTRUCTOR: COPY
  *******************************************/
 template<class T>
-queue<T>::queue(const queue<T>& rhs)
+queue<T>::queue(queue<T>& rhs)
 {
-   assert(rhs.numCapacity >= 0);
-
-   // do nothing if there is nothing to do
-   if (rhs.numCapacity == 0)
-   {
+  numPush = 0;
+  numPop = 0;
+  /*if (rhs.numCapacity == 0)
+    {
       numCapacity = 0;
-      numItems = 0;
       numPush = 0;
-      numPop = 0;
-      data = NULL;
-      return;
-   }
+  }*/
+  
+    if (numCapacity < rhs.size())
+    {
+      resize(rhs.size());
+    }
 
-   else
-   {
-   
-   // attempt to allocate
-   try
-   {
-      data = new T[rhs.numCapacity];
-   }
-   catch (std::bad_alloc)
-   {
-      throw "ERROR: Unable to allocate buffer";
-   }
+     try
+       {
+	 data = new T[rhs.numCapacity];
+       }
+     catch (std::bad_alloc)                                                                                                                                                                                                                       {
+       throw "ERROR: Unable to allocate buffer";
+     }
+     numCapacity = rhs.numCapacity;
+     int tempPop = rhs.numPop;
 
-   // copy over the capacity and size
-      numCapacity = rhs.numCapacity;
-      numItems = rhs.numItems;
-      numPush = rhs.numPush;
-      numPop = rhs.numPop;
-
-      //int tempFront = rhs.numPop;
-      // copy the items over one at a time using the assignment operator
-      for (int i = rhs.numPop; i < rhs.numPush; i++)
-      {
-         push(rhs.data[i % rhs.numCapacity]);
-      }
-   }
+     for (int i = rhs.numPop; i < rhs.numPush; i++)
+       {
+	 push(rhs.data[i % rhs.numCapacity]);
+       }
 }
 
 /********************************************
