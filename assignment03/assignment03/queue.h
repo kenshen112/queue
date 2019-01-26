@@ -49,7 +49,7 @@ public:
 
       if (numCapacity < rhs.size())
       {
-         resize(rhs.size());
+         resize(rhs.numCapacity);
       }
 
       for (int i = rhs.numPop; i < rhs.numPush; i++)
