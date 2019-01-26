@@ -204,42 +204,41 @@ int queue<T>::size()
  * Queue : RESIZE
  * resizes the queue buffer
  *******************************************/
-template<class T>
-int queue<T>::resize(int numCapacity)
-{
-	T *temp = nullptr;
+ template<class T>
+   void queue<T>::resize(int &tempFront)
+   {
+     T *temp = nullptr;
+     //step 1: if maxCapacitry is 0 alloc to 1 change capacity done.
+     //step 2: multiply cap by 2 to double make a new variable to conserve data.
 
-	//step 1: if maxCapacitry is 0 alloc to 1 change capacity done.
-	//step 2: multiply cap by 2 to double make a new variable to conserve data.
-	
-	if (numCapacity == 0) //step 1.
-	{
-		numCapacity = 2;
-		data = new T[numCapacity];
+     if (tempFront == 0) //step 1.
+       {
+	 tempFront = 1;
+	 data = new T[tempFront];
 
-		return numCapacity;
-	}
+	 return;
+       }
 
-	else if (numPush == numCapacity) //step 2.
-	{
-		numCapacity = numCapacity * 2;
+     else if (numPush == tempFront) //step 2.
+       {
+	 tempFront = tempFront * 2;
 
-		temp = new T[numCapacity];
+	 temp = new T[tempFront];
 
-		int tempPush = numPush;
+	 int tempPush = numPush;
 
-		for (int i = 0; i < numPush; i++)
-		{
-			temp[i] = data[i];
-		}
+	 for (int i = 0; i < numPush; i++)
+	   {
+	     temp[i] = data[i];
+	   }
 
-		delete[] data;
-	}
+	 delete[] data;
+       }
 
-	data = temp;
+     data = temp;
 
-	return numCapacity;
-}
+     return;
+   }
 
 /********************************************
  * Queue : iHead
