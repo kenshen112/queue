@@ -349,7 +349,8 @@ void queue<T>::push(const T & element)
       resize(1);
       //data = new T[numElements];
    }
-   if (size() <= numCapacity) 
+   std::cout << "Size: " << size() << " numCapacity: " << numCapacity << "\n";
+   if (size() <= numCapacity)
    {
       resize(numCapacity *= 2);
    }
