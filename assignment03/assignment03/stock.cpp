@@ -37,4 +37,11 @@ void stock::stocksBuySell()
 
 }
 
+float stock::calcProfitLoss()
+{
+   
 
+   (sellPrice - purchasePrice)
+
+   return profitLoss;
+}

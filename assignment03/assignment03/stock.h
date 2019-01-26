@@ -22,6 +22,9 @@ private:
    float input;
    float profitLoss;
    Dollars money;
+   float purchasePrice;
+   float sellPrice;
+   int numShares;
 
 public:
    // the interactive stock buy/sell function
