@@ -19,12 +19,13 @@ class stock
 {
 private:   
    //variables
-   float input;
+   std::string input;
    float profitLoss;
    Dollars money;
    float purchasePrice;
    float sellPrice;
    int numShares;
+   int amount;
 
 public:
    // the interactive stock buy/sell function

@@ -47,19 +47,24 @@ void stock::stocksBuySell()
    cout << "  display         - Display your current stock portfolio\n";
    cout << "  quit            - Display a final report and quit the program\n";
 
-   std::string input;
-   int amount = 0;
-   float price = 0.00;
+   float price;
    std::cout << "> ";
-   std::cin >> input >> amount >> price;
+   std::cin >> input >> numShares >> price;
 
 
+   if (input == "sell")
+   {
+	   sellPrice = price;
+   }
 
+   else if (input == "buy")
+   {
+	   purchasePrice = price;
+   }
 }
 
 float stock::calcProfitLoss()
-{
-   
+{ 
    int sellBatches[];
    (sellPrice - purchasePrice) * numShares;
 
