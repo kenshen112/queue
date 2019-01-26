@@ -354,7 +354,7 @@ void queue<T>::push(const T & element)
       resize(1);
       //data = new T[numCapacity];
    }
-   std::cout << "Size: " << size() << " numCapacity: " << numCapacity << "\n";
+   //std::cout << "Size: " << size() << " numCapacity: " << numCapacity << "\n";
    if (size() <= numCapacity)
    {
      std::cout << "Size: " << size() << std::endl
@@ -365,7 +365,7 @@ void queue<T>::push(const T & element)
       resize(numCapacity *= 2);
    }
    std::cout << iTail() << "\n";
-   data[iTail()] = element;
+   data[numPush] = element;
    numPush++;
 }
 
