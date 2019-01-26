@@ -15,6 +15,23 @@
 #include "queue.h"     // for QUEUE
 using namespace std; // Bad CS teacher's don't make me sick stack overflow on you
 
+
+
+bool findObject(char *ob, char recieve[])
+{
+	if (strstr(recieve, ob) != NULL)
+	{
+		return true;
+	}
+
+	else
+	{
+		return false;
+	}
+}
+
+
+
 /************************************************
  * STOCKS BUY SELL
  * The interactive function allowing the user to
