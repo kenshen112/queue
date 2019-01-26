@@ -76,7 +76,7 @@ public:
 
      for (int i = 0; i < rhs.numCapacity; i++, tempPop = (tempPop +1) % numCapacity)
        {
-	  data[i] = rhs.data[tempPop];
+	 push(rhs.data[tempPop]);
        }
 
      return *this;
@@ -353,12 +353,7 @@ void queue<T>::push(const T & element)
    }
    //std::cout << "Size: " << size() << " numCapacity: " << numCapacity << "\n";
    if (size() <= numCapacity)
-   {
-     std::cout << "Size: " << size() << std::endl
-	       << "Push: " << numPush << std::endl
-               << "Pop: " << numPop << std::endl
-               << "Capacity: " << numCapacity << std::endl;
-     
+   { 
       resize(numCapacity *= 2);
    }
    std::cout << iTail() << "\n";
