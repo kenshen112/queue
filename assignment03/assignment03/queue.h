@@ -159,6 +159,9 @@ queue<T>::queue(const queue<T>& rhs)
       return;
    }
 
+   else
+     {
+   
    // attempt to allocate
    try
    {
@@ -178,6 +181,7 @@ queue<T>::queue(const queue<T>& rhs)
    // copy the items over one at a time using the assignment operator
    for (int i = 0; i < rhs.numItems; i++, tempFront = (tempFront + 1) % numCapacity)
       data[i] = rhs.data[tempFront];
+     }
 }
 
 /********************************************
@@ -207,7 +211,7 @@ int queue<T>::size()
  template<class T>
    void queue<T>::resize(int &tempFront)
    {
-     T *temp = nullptr;
+     T *temp;
      //step 1: if maxCapacitry is 0 alloc to 1 change capacity done.
      //step 2: multiply cap by 2 to double make a new variable to conserve data.
 
@@ -215,8 +219,8 @@ int queue<T>::size()
        {
 	 tempFront = 1;
 	 data = new T[tempFront];
-
-	 return;
+	 temp  = new T[tempFront];
+	 //return;
        }
 
      else if (numPush == tempFront) //step 2.
@@ -232,7 +236,7 @@ int queue<T>::size()
 	     temp[i] = data[i];
 	   }
 
-	 delete[] data;
+	 //delete[] data;
        }
 
      data = temp;
@@ -287,8 +291,11 @@ void queue<T>::push(const T & element)
 		resize(numCapacity);
 		std::cout << "resize " << "numPush: " << numPush << " numPop: " << numPop << std::endl;
 	}
-	data[iTail()] = element;
-	numPush++;
+	else
+	  {
+	    data[numPush] = element;
+	    numPush++;
+	  }
 }
 
 /********************************************
