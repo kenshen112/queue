@@ -44,7 +44,39 @@ public:
  *******************************************/
    queue<T> & operator=(queue<T> & rhs)
    {
-      numPush = 0;
+     if (rhs.numCapacity == 0)
+       {
+	 numCapacity = 0;
+	 numItems = 0;
+	 delete [] data;
+	 data = NULL;
+	 numPop = 0;
+	 numPush = 0;
+	 return *this;
+       }
+
+     delete [] data;
+
+     try
+     {
+       data = new T[rhs.numCapacity];
+     }
+     catch (std::bad_alloc)
+     {
+       throw "ERROR: Unable to allocate buffer";
+     }
+
+     numCapacity = rhs.numCapacity;
+     int tempPop = rhs.numPop;
+
+     for (int i = 0; i < rhs.numCapacity; i++, tempPop = (tempPop +1) % numCapacity)
+       {
+	 data[i] = rhs.data[tempPop];
+       }
+
+     return *this;
+     
+     /* numPush = 0;
       numPop = 0;
 
       if (numCapacity < rhs.size())
@@ -56,7 +88,7 @@ public:
       {
          push(rhs.data[i % rhs.numCapacity]);
       }
-      return *this;
+      return *this;*/
    }
    //Function Prototypes
    T & front();
@@ -193,7 +225,9 @@ queue<T>::queue(const queue<T>& rhs)
 template<class T>
 inline queue<T>::~queue()
 {
-   clear();
+  std::cout << "Destructor" << std::endl;
+
+  clear();
 }
 
 
@@ -223,6 +257,7 @@ int queue<T>::size()
 
          data = dataNew;
          numCapacity = capacityNew;
+	 std::cout << "bad Alloc" << std::endl;
       }
       catch (std::bad_alloc) {
          throw "ERROR: Unable to allocate new buffer for queue";
@@ -320,13 +355,15 @@ void queue<T>::push(const T & element)
  *******************************************/
 template <class T>
 void queue <T> ::clear()
-{
-   data = NULL; // This could error out try data = NULL;
-   delete[] data;
-   numPush = 0;
-   numPop = 0;
-   numCapacity = 0;
-}
+  {
+    data = NULL; 
+    delete[] data;
+    numPush = 0;
+    numPop = 0;
+    numCapacity = 0;
+    std::cout << "Clear is running" << std::endl;
+    
+  }
 /********************************************
  * queue : EMPTY
  * Checks if queue is empty
