@@ -115,7 +115,7 @@ T& queue<T>::front()
 
 	else
 	{
-		return data[numPop];
+		return data[iHead()];
 	}
 }
 
@@ -134,7 +134,7 @@ T& queue<T>::back()
 
 	else
 	{
-		return data[numPush - 1];
+		return data[iTail()];
 	}
 }
 
@@ -350,16 +350,16 @@ void queue<T>::push(const T & element)
 {
    if (numCapacity == 0)
    {
-      //numCapacity = 1;
-      resize(1);
+      numCapacity = 1;
+      //resize(1);
       //data = new T[numElements];
    }
-   std::cout << "Size: " << size() << " numCapacity: " << numCapacity << "\n";
-   if (size() <= numCapacity)
+   if(size() <= numCapacity)
    {
       resize(numCapacity *= 2);
    }
-   std::cout << iTail() << "\n";
+   //std::cout << "Size: " << size() << " numCapacity: " << numCapacity << "\n";
+   //std::cout << iTail() << "\n";
    data[iTail()] = element;
    numPush++;
 }
