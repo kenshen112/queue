@@ -45,18 +45,6 @@ public:
    {
       numPush = 0;
       numPop = 0;
-      /*if (rhs.numCapacity == 0)
-      {
-	      numCapacity = 0;
-	      numItems = 0;
-	      delete [] data;
-	      data = NULL;
-	      numPop = 0;
-	      numPush = 0;
-	      return *this;
-	   }*/
-
-   //delete [] data;
 
    if (numCapacity < rhs.size())
       {
@@ -81,21 +69,8 @@ public:
       }
 
      return *this;
-     
-     /* numPush = 0;
-      numPop = 0;
-
-      if (numCapacity < rhs.size())
-      {
-         resize(rhs.numCapacity);
-      }
-
-      for (int i = rhs.numPop; i < rhs.numPush; i++)
-      {
-         push(rhs.data[i % rhs.numCapacity]);
-      }
-      return *this;*/
    }
+
    //Function Prototypes
    T & front();
    T & back();
@@ -148,7 +123,8 @@ void queue <T>::pop()
 	}
    else
    {
-      numPop = (numPop + 1) % numCapacity;
+      //numPop = (numPop + 1) % numCapacity;
+      numPop++;
    }
 }
 
@@ -269,37 +245,7 @@ int queue<T>::size()
       }
       catch (std::bad_alloc) {
          throw "ERROR: Unable to allocate new buffer for queue";
-      }
-      /*T *temp = new T[tempFront];
-     //step 1: if maxCapacitry is 0 alloc to 1 change capacity done.
-     //step 2: multiply cap by 2 to double make a new variable to conserve data.
-
-     if (tempFront == 0) //step 1.
-       {
-	 tempFront = 1;
-	 data = new T[tempFront];
-	 temp  = new T[tempFront];
-	 //return;
-       }
-
-     else if (numPush == tempFront) //step 2.
-       {
-
-	 temp = new T[tempFront];
-
-	 int tempPush = numPush;
-
-	 for (int i = 0; i < numPush; i++)
-	   {
-	     temp[i] = data[i];
-	   }
-
-	 //delete[] data;
-       }
-
-     data = temp;
-
-     return;*/
+      }  
    }
 
 /********************************************
