@@ -110,7 +110,7 @@ void queue <T>::pop()
 	}
 
 	numCapacity--;
-	numPop = (numPop + 1) % numCapacity;
+	//numPop = (numPop + 1) % numCapacity;
 }
 
 /********************************************
@@ -155,7 +155,6 @@ queue<T>::queue(const queue<T>& rhs)
       numCapacity = 0;
       numItems = 0;
       numPush = 0;
-      numPop = 0;
       data = NULL;
       return;
    }
@@ -173,7 +172,6 @@ queue<T>::queue(const queue<T>& rhs)
    // copy over the capacity and size
    numCapacity = rhs.numCapacity;
    numItems = rhs.numItems;
-   numPop = 0;
    numPush = numItems;
 
    int tempFront = rhs.numPop;
@@ -287,7 +285,7 @@ void queue<T>::push(const T & element)
 {
 	if (size() <= numCapacity) {
 		resize(numCapacity);
-		std::cout << "resize: " << "numPush: " << numPush << "numPop: " << numPop << std::endl;
+		std::cout << "resize " << "numPush: " << numPush << " numPop: " << numPop << std::endl;
 	}
 	data[iTail()] = element;
 	numPush++;
@@ -311,7 +309,7 @@ void queue <T> ::clear()
  * Checks if queue is empty
  *******************************************/
  template<class T>
-   bool queue<T>::empty(){ return size() == 0; }
+   bool queue<T>::empty(){ return numCapacity == 0; }
 
 }// namespace custom
 #endif /* QUEUE_H */
