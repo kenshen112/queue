@@ -103,7 +103,7 @@ T& queue<T>::front()
 
 	else
 	{
-      return data[numPop];
+      return data[iHead()];
 	}
 }
 
@@ -116,14 +116,14 @@ T& queue<T>::back()
 		throw "ERROR: Unable to reference the element from an empty Queue";
 	}
 
-	else if (numPush == 0)
+	/*else if (numPush == 0)
 	{
 		return data[numCapacity - 1];
-	}
+	}*/
 
 	else
 	{
-	  return data[numPush];
+	  return data[iTail()];
 	}
 }
 
@@ -299,13 +299,14 @@ void queue<T>::push(const T & element)
       resize(1);
       //data = new T[numCapacity];
    }
-   if (size() <= numCapacity)
+   else if (size() == numCapacity)
    {
      
       resize(numCapacity *= 2);
    }
-   data[numPush] = element;
    numPush++;
+   data[iTail()] = element;
+   
 }
 
 /********************************************
