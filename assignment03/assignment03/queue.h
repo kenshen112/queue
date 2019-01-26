@@ -104,13 +104,14 @@ T& queue<T>::back()
 template <class T>
 void queue <T>::pop()
 {
-	if (numCapacity == 0)
+   if (empty() == true)
 	{
 		throw "ERROR: Unable to pop from an empty Queue";
 	}
-
-	numCapacity--;
-	//numPop = (numPop + 1) % numCapacity;
+   else
+   {
+      numPop = (numPop + 1) % numCapacity;
+   }
 }
 
 /********************************************
@@ -155,6 +156,7 @@ queue<T>::queue(const queue<T>& rhs)
       numCapacity = 0;
       numItems = 0;
       numPush = 0;
+      numPop = 0;
       data = NULL;
       return;
    }
@@ -175,12 +177,13 @@ queue<T>::queue(const queue<T>& rhs)
    // copy over the capacity and size
    numCapacity = rhs.numCapacity;
    numItems = rhs.numItems;
-   numPush = numItems;
+   numPush = rhs.numPush;
+   numPop = rhs.numPop;
 
-   int tempFront = rhs.numPop;
+   //int tempFront = rhs.numPop;
    // copy the items over one at a time using the assignment operator
-   for (int i = 0; i < rhs.numItems; i++, tempFront = (tempFront + 1) % numCapacity)
-      data[i] = rhs.data[tempFront];
+   for (int i = 0; i < rhs.numPush - rhs.numPop; i++)
+      data[i] = rhs.data[i];
      }
 }
 
@@ -209,9 +212,22 @@ int queue<T>::size()
  * resizes the queue buffer
  *******************************************/
  template<class T>
-   void queue<T>::resize(int &tempFront)
+   void queue<T>::resize(int &capacityNew)
    {
-     T *temp;
+      try {
+         T *dataNew = new T[capacityNew];
+
+         for (int i = 0; i < size(); i++) {
+            dataNew[i] = data[i];
+         }
+
+         data = dataNew;
+         numCapacity = capacityNew;
+      }
+      catch (std::bad_alloc) {
+         throw "ERROR: Unable to allocate new buffer for queue";
+      }
+      /*T *temp = new T[tempFront];
      //step 1: if maxCapacitry is 0 alloc to 1 change capacity done.
      //step 2: multiply cap by 2 to double make a new variable to conserve data.
 
@@ -225,7 +241,6 @@ int queue<T>::size()
 
      else if (numPush == tempFront) //step 2.
        {
-	 tempFront = tempFront * 2;
 
 	 temp = new T[tempFront];
 
@@ -241,7 +256,7 @@ int queue<T>::size()
 
      data = temp;
 
-     return;
+     return;*/
    }
 
 /********************************************
@@ -261,8 +276,7 @@ int queue<T>::iHead()
 template<class T>
 int queue<T>::iTail()
 {  
-   numPush++ % numCapacity;
-   return numPush;
+   return (numPush -1) % numCapacity;
 }
 
 template<class T>
@@ -287,15 +301,17 @@ bool queue<T>::full()
 template<class T>
 void queue<T>::push(const T & element)
 {
-	if (size() <= numCapacity) {
-		resize(numCapacity);
-		std::cout << "resize " << "numPush: " << numPush << " numPop: " << numPop << std::endl;
-	}
-	else
-	  {
-	    data[numPush] = element;
-	    numPush++;
-	  }
+   if (numCapacity == 0)
+   {
+      numCapacity = 1;
+      //data = new T[numElements];
+   }
+   if (size() <= numCapacity) {
+      resize(numCapacity *= 2);
+   }
+
+   data[iHead()] = element;
+   numPush++;
 }
 
 /********************************************
@@ -316,7 +332,17 @@ void queue <T> ::clear()
  * Checks if queue is empty
  *******************************************/
  template<class T>
-   bool queue<T>::empty(){ return numCapacity == 0; }
+bool queue<T>::empty()
+{ 
+
+   if (size() == 0) {
+      isEmpty = true;
+   }
+   else {
+      isEmpty = false;
+   }
+   return isEmpty;
+}
 
 }// namespace custom
 #endif /* QUEUE_H */

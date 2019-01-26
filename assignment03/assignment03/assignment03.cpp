@@ -16,7 +16,6 @@
 #include "stock.h"     // your stocksBuySell() function
 #include "dollars.h"   // for the Dollars class
 
-
 using std::cout;
 using std::cin;
 using std::endl;
