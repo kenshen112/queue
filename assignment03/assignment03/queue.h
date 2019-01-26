@@ -264,21 +264,6 @@ int queue<T>::iTail()
    return (numPush -1) % numCapacity;
 }
 
-template<class T>
-bool queue<T>::full()
-{
-   if (numPush == iHead())
-   {
-      isFull = true;
-   }
-   else
-   {
-      isFull = false;
-   }
-
-   return isFull;
-}
-
 /********************************************
  * Queue : PUSH
  * Adds an element to the back of the queue
