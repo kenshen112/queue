@@ -15,8 +15,21 @@
 #include "queue.h"     // for QUEUE
 #include <iostream>    // for ISTREAM and OSTREAM
 
-// the interactive stock buy/sell function
-void stocksBuySell();
+class stock
+{
+private:   
+   //variables
+   float input;
+   float profitLoss;
+   Dollars money;
+
+public:
+   // the interactive stock buy/sell function
+   void stocksBuySell();
+   float calcProfitLoss();
+   void display();
+};
+
 
 #endif // STOCK_H
 
