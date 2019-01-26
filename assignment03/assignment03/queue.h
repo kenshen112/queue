@@ -44,44 +44,7 @@ public:
  *******************************************/
    queue<T> & operator=(queue<T> & rhs)
    {
-     if (rhs.numCapacity == 0)
-       {
-	 numCapacity = 0;
-	 numItems = 0;
-	 delete [] data;
-	 data = NULL;
-	 numPop = 0;
-	 numPush = 0;
-	 return *this;
-	 }
-
-     delete [] data;
-
-     if (numCapacity < rhs.size())
-       {
-	 resize(rhs.numCapacity);
-       }
-     
-     try
-     {
-       data = new T[rhs.numCapacity];
-     }
-     catch (std::bad_alloc)
-     {
-       throw "ERROR: Unable to allocate buffer";
-     }
-
-     numCapacity = rhs.numCapacity;
-     int tempPop = rhs.numPop;
-
-     for (int i = 0; i < rhs.numCapacity; i++, tempPop = (tempPop +1) % numCapacity)
-       {
-	 push(rhs.data[tempPop]);
-       }
-
-     return *this;
-     
-     /* numPush = 0;
+      numPush = 0;
       numPop = 0;
 
       if (numCapacity < rhs.size())
@@ -93,7 +56,7 @@ public:
       {
          push(rhs.data[i % rhs.numCapacity]);
       }
-      return *this;*/
+      return *this;
    }
    //Function Prototypes
    T & front();
@@ -185,7 +148,7 @@ queue<T>::queue(int c)
 template<class T>
 queue<T>::queue(const queue<T>& rhs)
 {
-   assert(rhs.numCapacity >= 0);
+  assert(rhs.numCapacity >= 0);
 
    // do nothing if there is nothing to do
    if (rhs.numCapacity == 0)
