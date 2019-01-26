@@ -48,11 +48,11 @@ void stock::stocksBuySell()
    cout << "  quit            - Display a final report and quit the program\n";
 
    std::string input;
+   int amount = 0;
+   float price = 0.00;
+   std::cout << "> ";
+   std::cin >> input >> amount >> price;
 
-   if (findObject("Buy", input.c_str()))
-   {
-
-   }
 
 
 }
