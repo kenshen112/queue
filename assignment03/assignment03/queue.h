@@ -45,7 +45,7 @@ public:
    {
       numPush = 0;
       numPop = 0;
-      /*if (rhs.numCapacity == 0)
+      if (rhs.numCapacity == 0)
       {
 	      numCapacity = 0;
 	      numItems = 0;
@@ -54,9 +54,9 @@ public:
 	      numPop = 0;
 	      numPush = 0;
 	      return *this;
-	   }*/
+	   }
 
-   //delete [] data;
+   delete [] data;
 
    if (numCapacity < rhs.size())
       {
