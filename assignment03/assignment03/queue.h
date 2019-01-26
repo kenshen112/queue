@@ -76,7 +76,7 @@ public:
 
      for (int i = 0; i < rhs.numCapacity; i++, tempPop = (tempPop +1) % numCapacity)
        {
-	  data[i] = rhs.data[tempPop];
+	 push(rhs.data[tempPop]);
        }
 
      return *this;
