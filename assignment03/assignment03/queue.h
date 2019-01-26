@@ -248,6 +248,7 @@ int queue<T>::resize(int numCapacity)
 template<class T>
 int queue<T>::iHead()
 {
+   
    return numPop % numCapacity;
 }
 
@@ -258,7 +259,8 @@ int queue<T>::iHead()
 template<class T>
 int queue<T>::iTail()
 {  
-   return (numPush) % numCapacity;
+   (numPush++) % numCapacity;
+   return numPush;
 }
 
 /********************************************
