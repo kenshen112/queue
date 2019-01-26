@@ -76,7 +76,7 @@ public:
 
      for (int i = 0; i < rhs.numCapacity; i++, tempPop = (tempPop +1) % numCapacity)
        {
-	 push(rhs.data[tempPop]);
+	  data[i] = rhs.data[tempPop];
        }
 
      return *this;
@@ -147,9 +147,7 @@ void queue <T>::pop()
 	}
    else
    {
-      //std::cout << "numPop before: " << numPop << "\n";
       numPop = (numPop + 1) % numCapacity;
-      //std::cout << "numPop after: " << numPop << "\n";
    }
 }
 
@@ -351,12 +349,11 @@ void queue<T>::push(const T & element)
       resize(1);
       //data = new T[numCapacity];
    }
-   //std::cout << "Size: " << size() << " numCapacity: " << numCapacity << "\n";
    if (size() <= numCapacity)
-   { 
+   {
+     
       resize(numCapacity *= 2);
    }
-   std::cout << iTail() << "\n";
    data[numPush] = element;
    numPush++;
 }
