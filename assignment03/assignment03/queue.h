@@ -249,7 +249,6 @@ int queue<T>::size()
 template<class T>
 int queue<T>::iHead()
 {
-   
    return numPop % numCapacity;
 }
 
@@ -260,9 +259,8 @@ int queue<T>::iHead()
 template<class T>
 int queue<T>::iTail()
 {  
-   //(numPush++ % numCapacity;
-   //return numPush;
-   return (numPush - 1) % numCapacity;
+   numPush++ % numCapacity;
+   return numPush;
 }
 
 template<class T>
@@ -289,10 +287,9 @@ void queue<T>::push(const T & element)
 {
 	if (size() <= numCapacity) {
 		resize(numCapacity);
-		std::cout << "resize" << std::endl;
+		std::cout << "resize: " << "numPush: " << numPush << "numPop: " << numPop << std::endl;
 	}
 	data[iTail()] = element;
-	numPop = (numPop + 1) % numCapacity;
 	numPush++;
 }
 
