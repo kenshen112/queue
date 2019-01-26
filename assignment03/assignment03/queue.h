@@ -98,7 +98,7 @@ T& queue<T>::front()
 {
 	if (empty() == true)
 	{
-		throw "ERROR: Unable to reference the element from an empty Queue";
+		throw "ERROR: attempting to access an element in an empty queue";
 	}
 
 	else
@@ -113,7 +113,7 @@ T& queue<T>::back()
    
    if (empty() == true)
 	{
-		throw "ERROR: Unable to reference the element from an empty Queue";
+		throw "ERROR: attempting to access an element in an empty queue";
 	}
 
 	/*else if (numPush == 0)
