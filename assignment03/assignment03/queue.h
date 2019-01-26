@@ -238,11 +238,13 @@ int queue<T>::size()
       }
       try {
          T *dataNew = new T[capacityNew];
-
+	 
          for (int i = 0; i < size(); i++) {
             dataNew[i] = data[i];
          }
 
+	 delete[] data;
+	 
          data = dataNew;
          numCapacity = capacityNew;
       }
