@@ -25,12 +25,15 @@ private:
    float purchasePrice;
    float sellPrice;
    int numShares;
+   int numSellBatches;
 
 public:
    // the interactive stock buy/sell function
    void stocksBuySell();
    float calcProfitLoss();
    void display();
+
+   stock();
 };
 
 
