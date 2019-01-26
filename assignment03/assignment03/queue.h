@@ -44,7 +44,7 @@ public:
  *******************************************/
    queue<T> & operator=(queue<T> & rhs)
    {
-     if (rhs.numCapacity == 0)
+     /*if (rhs.numCapacity == 0)
        {
 	 numCapacity = 0;
 	 numItems = 0;
@@ -53,10 +53,15 @@ public:
 	 numPop = 0;
 	 numPush = 0;
 	 return *this;
-       }
+	 }*/
 
      delete [] data;
 
+     if (numCapacity < rhs.size())
+       {
+	 resize(rhs.numCapacity);
+       }
+     
      try
      {
        data = new T[rhs.numCapacity];
@@ -71,7 +76,7 @@ public:
 
      for (int i = 0; i < rhs.numCapacity; i++, tempPop = (tempPop +1) % numCapacity)
        {
-	 data[i] = rhs.data[tempPop];
+	  data[i] = rhs.data[tempPop];
        }
 
      return *this;
