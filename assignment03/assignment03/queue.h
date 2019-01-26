@@ -19,8 +19,6 @@ private:
    int numPop;
    int numCapacity;
    bool isEmpty;
-   int numItems;
-   bool isFull;
 
    //Private function prototypes
    void resize(int newCapacity);
@@ -47,16 +45,14 @@ public:
       numPop = 0;
       if (rhs.numCapacity == 0)
       {
-	      numCapacity = 0;
-	      numItems = 0;
+         numPop = 0;
+         numPush = 0;
+         numCapacity = 0;
 	      delete [] data;
 	      data = NULL;
-	      numPop = 0;
-	      numPush = 0;
+	      
 	      return *this;
 	   }
-
-   //delete [] data;
 
    if (numCapacity < rhs.size())
       {
@@ -93,6 +89,10 @@ public:
    bool empty();
 };
 
+/********************************************
+* QUEUE: FRONT
+* Retireves the front element of the queue
+*******************************************/
 template <class T>
 T& queue<T>::front()
 {
@@ -100,44 +100,42 @@ T& queue<T>::front()
 	{
 		throw "ERROR: attempting to access an element in an empty queue";
 	}
-
 	else
 	{
       return data[iHead()];
 	}
 }
 
+/********************************************
+* QUEUE: BACK
+* Retireves the back element of the queue
+*******************************************/
 template <class T>
 T& queue<T>::back()
-{
-   
+{  
    if (empty() == true)
 	{
 		throw "ERROR: attempting to access an element in an empty queue";
 	}
-
-	/*else if (numPush == 0)
-	{
-		return data[numCapacity - 1];
-	}*/
-
 	else
 	{
 	  return data[iTail()];
 	}
 }
 
+/********************************************
+* QUEUE: POP
+* removes the front element of the queue
+*******************************************/
 template <class T>
 void queue <T>::pop()
 {
    if (empty() == true)
 	{
-		//throw "ERROR: Unable to pop from an empty Queue";
       return;
 	}
    else
    {
-      //numPop = (numPop + 1) % numCapacity;
       numPop++;
    }
 }
@@ -153,7 +151,6 @@ queue<T>::queue()
    numCapacity = 0;
    data = new T[numCapacity];
    isEmpty = true;
-   numItems = 0;
 }
 
 /********************************************
@@ -167,7 +164,6 @@ queue<T>::queue(int c)
    numCapacity = c;
    data = new T[numCapacity];
    isEmpty = true;
-   numItems = 0;
 }
 
 /********************************************
@@ -178,31 +174,26 @@ queue<T>::queue(queue<T>& rhs)
 {
   numPush = 0;
   numPop = 0;
-  /*if (rhs.numCapacity == 0)
-    {
-      numCapacity = 0;
-      numPush = 0;
-  }*/
   
-    if (numCapacity < rhs.size())
-    {
+      if (numCapacity < rhs.size())
+      {
       resize(rhs.size());
-    }
+      }
 
-     try
-       {
-	 data = new T[rhs.numCapacity];
-       }
-     catch (std::bad_alloc)                                                                                                                                                                                                                       {
-       throw "ERROR: Unable to allocate buffer";
-     }
-     numCapacity = rhs.numCapacity;
-     int tempPop = rhs.numPop;
+      try
+      {
+	      data = new T[rhs.numCapacity];
+      }
+      catch (std::bad_alloc)                                                                                                                                                                                                                       {
+         throw "ERROR: Unable to allocate buffer";
+      }
+      numCapacity = rhs.numCapacity;
+      int tempPop = rhs.numPop;
 
-     for (int i = rhs.numPop; i < rhs.numPush; i++)
-       {
-	 push(rhs.data[i % rhs.numCapacity]);
-       }
+      for (int i = rhs.numPop; i < rhs.numPush; i++)
+      {
+	      push(rhs.data[i % rhs.numCapacity]);
+      }
 }
 
 /********************************************
@@ -230,29 +221,28 @@ int queue<T>::size()
  * resizes the queue buffer
  *******************************************/
  template<class T>
-   void queue<T>::resize(int capacityNew)
+void queue<T>::resize(int capacityNew)
+{
+   // do nothing if there is nothing to do
+   if (capacityNew < numCapacity)
    {
-      // do nothing if there is nothing to do
-      if (capacityNew < numCapacity)
-      {
-         return;
-      }
-      try {
-         T *dataNew = new T[capacityNew];
-	 
-         for (int i = numPop; i < numPush; i++) {
-            dataNew[i] = data[i];
-         }
-
-	 //delete[] data;
-	 
-         data = dataNew;
-         numCapacity = capacityNew;
-      }
-      catch (std::bad_alloc) {
-         throw "ERROR: Unable to allocate new buffer for queue";
-      }  
+      return;
    }
+   try 
+   {
+      T *dataNew = new T[capacityNew];
+	 
+      for (int i = numPop; i < numPush; i++) {
+         dataNew[i] = data[i];
+      }
+	 
+      data = dataNew;
+      numCapacity = capacityNew;
+   }
+   catch (std::bad_alloc) {
+      throw "ERROR: Unable to allocate new buffer for queue";
+   }  
+}
 
 /********************************************
  * Queue : iHead
@@ -285,7 +275,7 @@ bool queue<T>::full()
    {
       isFull = false;
    }
-      
+
    return isFull;
 }
 
@@ -298,9 +288,7 @@ void queue<T>::push(const T & element)
 {
    if (numCapacity == 0)
    {
-     //numCapacity = 1;
       resize(1);
-      //data = new T[numCapacity];
    }
    else if (numPush == numCapacity)
    {
@@ -331,11 +319,12 @@ void queue <T> ::clear()
  template<class T>
 bool queue<T>::empty()
 { 
-
-   if (numPush == numPop) {
+   if (numPush == numPop) 
+   {
       isEmpty = true;
    }
-   else {
+   else 
+   {
       isEmpty = false;
    }
    return isEmpty;
