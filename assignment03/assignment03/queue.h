@@ -56,7 +56,7 @@ public:
 	      return *this;
 	   }
 
-   delete [] data;
+   //delete [] data;
 
    if (numCapacity < rhs.size())
       {
@@ -243,7 +243,7 @@ int queue<T>::size()
             dataNew[i] = data[i];
          }
 
-	 delete[] data;
+	 //delete[] data;
 	 
          data = dataNew;
          numCapacity = capacityNew;
@@ -301,7 +301,7 @@ void queue<T>::push(const T & element)
       resize(1);
       //data = new T[numCapacity];
    }
-   else if (size() == numCapacity)
+   else if (numPush == numCapacity)
    {
      
       resize(numCapacity *= 2);
