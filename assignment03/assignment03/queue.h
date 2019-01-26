@@ -232,8 +232,6 @@ queue<T>::queue(const queue<T>& rhs)
 template<class T>
 inline queue<T>::~queue()
 {
-  std::cout << "Destructor" << std::endl;
-
   clear();
 }
 
@@ -269,7 +267,6 @@ int queue<T>::size()
 
          data = dataNew;
          numCapacity = capacityNew;
-	 std::cout << "Resize" << std::endl;
       }
       catch (std::bad_alloc) {
          throw "ERROR: Unable to allocate new buffer for queue";
@@ -381,8 +378,6 @@ void queue <T> ::clear()
     numPush = 0;
     numPop = 0;
     numCapacity = 0;
-    std::cout << "Clear is running" << std::endl;
-    
   }
 /********************************************
  * queue : EMPTY
