@@ -232,7 +232,7 @@ int queue<T>::size()
    void queue<T>::resize(int capacityNew)
    {
       // do nothing if there is nothing to do
-      if (capacityNew <= numCapacity)
+      if (capacityNew < numCapacity)
       {
          return;
       }
@@ -306,7 +306,6 @@ void queue<T>::push(const T & element)
    }
    numPush++;
    data[iTail()] = element;
-   
 }
 
 /********************************************
