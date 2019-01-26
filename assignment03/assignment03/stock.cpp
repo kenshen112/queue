@@ -17,7 +17,7 @@ using namespace std; // Bad CS teacher's don't make me sick stack overflow on yo
 
 
 
-bool findObject(char *ob, char recieve[])
+bool findObject(const char *ob, const char* recieve)
 {
 	if (strstr(recieve, ob) != NULL)
 	{
@@ -48,7 +48,10 @@ void stock::stocksBuySell()
    cout << "  quit            - Display a final report and quit the program\n";
 
    std::string input;
-
+   int amount = 0;
+   float price = 0.00;
+   std::cout << "> ";
+   std::cin >> input >> amount >> price;
 
 
 
