@@ -96,21 +96,22 @@ public:
 template <class T>
 T& queue<T>::front()
 {
-	if (numCapacity == 0)
+	if (empty() == true)
 	{
 		throw "ERROR: Unable to reference the element from an empty Queue";
 	}
 
 	else
 	{
-		return data[numPop];
+      return data[numPop];
 	}
 }
 
 template <class T>
 T& queue<T>::back()
 {
-	if (empty())
+   
+   if (empty() == true)
 	{
 		throw "ERROR: Unable to reference the element from an empty Queue";
 	}
@@ -122,7 +123,7 @@ T& queue<T>::back()
 
 	else
 	{
-		return data[numPush - 1];
+      return data[numPush];
 	}
 }
 
@@ -188,7 +189,7 @@ queue<T>::queue(const queue<T>& rhs)
    }
 
    else
-     {
+   {
    
    // attempt to allocate
    try
@@ -201,16 +202,18 @@ queue<T>::queue(const queue<T>& rhs)
    }
 
    // copy over the capacity and size
-   numCapacity = rhs.numCapacity;
-   numItems = rhs.numItems;
-   numPush = rhs.numPush;
-   numPop = rhs.numPop;
+      numCapacity = rhs.numCapacity;
+      numItems = rhs.numItems;
+      numPush = rhs.numPush;
+      numPop = rhs.numPop;
 
-   //int tempFront = rhs.numPop;
-   // copy the items over one at a time using the assignment operator
-   for (int i = 0; i < rhs.numPush - rhs.numPop; i++)
-      data[i] = rhs.data[i];
-     }
+      //int tempFront = rhs.numPop;
+      // copy the items over one at a time using the assignment operator
+      for (int i = rhs.numPop; i < rhs.numPush; i++)
+      {
+         push(rhs.data[i % rhs.numCapacity]);
+      }
+   }
 }
 
 /********************************************
