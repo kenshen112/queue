@@ -23,7 +23,7 @@ private:
    bool isFull;
 
    //Private function prototypes
-   void resize(int & tempFront);
+   void resize(int newCapacity);
    int iHead();
    int iTail();
    bool full();
@@ -110,7 +110,9 @@ void queue <T>::pop()
 	}
    else
    {
+      //std::cout << "numPop before: " << numPop << "\n";
       numPop = (numPop + 1) % numCapacity;
+      //std::cout << "numPop after: " << numPop << "\n";
    }
 }
 
@@ -212,8 +214,13 @@ int queue<T>::size()
  * resizes the queue buffer
  *******************************************/
  template<class T>
-   void queue<T>::resize(int &capacityNew)
+   void queue<T>::resize(int capacityNew)
    {
+      // do nothing if there is nothing to do
+      if (capacityNew <= numCapacity)
+      {
+         return;
+      }
       try {
          T *dataNew = new T[capacityNew];
 
@@ -303,14 +310,16 @@ void queue<T>::push(const T & element)
 {
    if (numCapacity == 0)
    {
-      numCapacity = 1;
+      //numCapacity = 1;
+      resize(1);
       //data = new T[numElements];
    }
-   if (size() <= numCapacity) {
+   if (size() <= numCapacity) 
+   {
       resize(numCapacity *= 2);
    }
-
-   data[iHead()] = element;
+   std::cout << iTail() << "\n";
+   data[iTail()] = element;
    numPush++;
 }
 
@@ -335,7 +344,7 @@ void queue <T> ::clear()
 bool queue<T>::empty()
 { 
 
-   if (size() == 0) {
+   if (numPush == numPop) {
       isEmpty = true;
    }
    else {
