@@ -17,7 +17,7 @@ using namespace std; // Bad CS teacher's don't make me sick stack overflow on yo
 
 
 
-bool findObject(char *ob, char recieve[])
+bool findObject(const char *ob, const char* recieve)
 {
 	if (strstr(recieve, ob) != NULL)
 	{
@@ -49,7 +49,10 @@ void stock::stocksBuySell()
 
    std::string input;
 
+   if (findObject("Buy", input.c_str()))
+   {
 
+   }
 
 
 }
