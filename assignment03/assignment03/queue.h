@@ -132,7 +132,8 @@ void queue <T>::pop()
 {
    if (empty() == true)
 	{
-		throw "ERROR: Unable to pop from an empty Queue";
+		//throw "ERROR: Unable to pop from an empty Queue";
+      return;
 	}
    else
    {
