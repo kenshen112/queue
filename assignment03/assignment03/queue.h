@@ -23,7 +23,7 @@ private:
    bool isFull;
 
    //Private function prototypes
-   int resize(int numCapacity);
+   void resize(int & tempFront);
    int iHead();
    int iTail();
    bool full();
