@@ -38,46 +38,47 @@ public:
    //Destructor
    ~queue();
 
-   
  /********************************************
  * ASSIGNMENT OPERATOR
  *******************************************/
    queue<T> & operator=(queue<T> & rhs)
    {
-     if (rhs.numCapacity == 0)
-       {
-	 numCapacity = 0;
-	 numItems = 0;
-	 delete [] data;
-	 data = NULL;
-	 numPop = 0;
-	 numPush = 0;
-	 return *this;
-	 }
+      numPush = 0;
+      numPop = 0;
+      /*if (rhs.numCapacity == 0)
+      {
+	      numCapacity = 0;
+	      numItems = 0;
+	      delete [] data;
+	      data = NULL;
+	      numPop = 0;
+	      numPush = 0;
+	      return *this;
+	   }*/
 
-     delete [] data;
+   //delete [] data;
 
-     if (numCapacity < rhs.size())
-       {
-	 resize(rhs.numCapacity);
-       }
+   if (numCapacity < rhs.size())
+      {
+	      resize(rhs.size());
+      }
      
-     try
-     {
-       data = new T[rhs.numCapacity];
-     }
-     catch (std::bad_alloc)
-     {
-       throw "ERROR: Unable to allocate buffer";
-     }
+   try
+   {
+      data = new T[rhs.numCapacity];
+   }
+   catch (std::bad_alloc)
+   {
+      throw "ERROR: Unable to allocate buffer";
+   }
 
      numCapacity = rhs.numCapacity;
      int tempPop = rhs.numPop;
 
-     for (int i = 0; i < rhs.numCapacity; i++, tempPop = (tempPop +1) % numCapacity)
-       {
-	 push(rhs.data[tempPop]);
-       }
+      for (int i = rhs.numPop; i < rhs.numPush; i++)
+      {
+         push(rhs.data[i % rhs.numCapacity]);
+      }
 
      return *this;
      
