@@ -46,28 +46,33 @@ void stock::stocksBuySell()
    cout << "  display         - Display your current stock portfolio\n";
    cout << "  quit            - Display a final report and quit the program\n";
 
+   stockData temp;
+   
+   
    float price;
    std::cout << "> ";
-   std::cin >> data[].input >> data[].numShares >> price;
+   std::cin >> temp.input >> temp.numShares >> price;
 
 
-   if (data[].input == "sell")
+   if (temp.input == "sell")
    {
-	   data[].sellPrice = data[].price;
+	   temp.sellPrice = price;
    }
 
-   else if (data[].input == "buy")
+   else if (temp.input == "buy")
    {
-	   data[].purchasePrice = price;
+	   temp.purchasePrice = price;
    }
+
+   data.push(temp);
+
 }
 
 float stock::calcProfitLoss()
 { 
-   
-   //profitLoss = (sellPrice - purchasePrice) * numShares;
+   profitLoss = (sellPrice - purchasePrice) * numShares;
 
-   //return this->profitLoss += profitLoss;
+   return this->profitLoss += profitLoss;
 }
 
 void stock::display()
