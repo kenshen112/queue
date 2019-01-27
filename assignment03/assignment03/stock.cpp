@@ -59,7 +59,8 @@ void stock::stocksBuySell()
    do
    {
       std::cout << "> ";
-      std::cin >> temp.input >> temp.numShares >> price;
+      std::cin >> temp.input;
+      price = 0.00;
 
       if (temp.input == "sell")
       {
