@@ -122,7 +122,8 @@ float stock::calcProfitLoss()
 
    this->data.front().profitLoss = (data.front().sellPrice - data.front().purchasePrice) * data.front().numShares;
 
-   return this->data.front().profitLoss += data.front().profitLoss;
+   //return this->data.front().profitLoss += data.front().profitLoss;
+   return 0.0f;
    
 }
 
@@ -135,7 +136,7 @@ void stock::display()
 
 	for (int i = 0; i < stocks.size(); i++)	
 	{
-	         std::cout << "        Bought " << stocks.front().amount << " shares at " << "$" << stocks.front().profitLoss << std::endl;  
+	         std::cout << "        Bought " << stocks.front().numShares << " shares at " << "$" << stocks.front().profitLoss << std::endl;  
 			 stocks.pop();
 	}
 
