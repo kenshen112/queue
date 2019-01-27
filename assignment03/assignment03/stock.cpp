@@ -85,10 +85,13 @@ void stock::stocksBuySell()
 
 float stock::calcProfitLoss()
 { 
-   //profitLoss = (sellPrice - purchasePrice) * numShares;
 
-   //return this->profitLoss += profitLoss;
-   return 0.0f;
+
+
+   this->data.front().profitLoss = (data.front().sellPrice - data.front().purchasePrice) * data.front().numShares;
+
+   return this->data.front().profitLoss += data.front().profitLoss;
+   
 }
 
 void stock::display()
