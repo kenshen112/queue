@@ -14,7 +14,7 @@
 #include "dollars.h"   // for Dollars defined in StockTransaction
 #include "queue.h"     // for QUEUE
 #include <iostream>    // for ISTREAM and OSTREAM
-
+using namespace custom;
 struct stockData
 {
 	std::string input;
