@@ -55,13 +55,14 @@ int main()
    cout << "\ta. Selling Stock\n";
 
    // select
+   stock s;
    char choice;
    cout << "> ";
    cin  >> choice;
    switch (choice)
    {
       case 'a':
-         stocksBuySell();
+         s.stocksBuySell();
          break;
       case '1':
          testSimple();
