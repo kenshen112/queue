@@ -6,13 +6,17 @@
 #     Kenyon Bunker
 #     Tim O'Barr
 # Summary:
-#     <put a description here>
+#     Example of a queue and a stock class to buy and 
+#     sell stocks
 # Time:
-#     Tim:
-#     Kenyon:
+#     Tim: 3
+#     Kenyon: 3
+#     Together: 10
 # What was difficult?:
-#     Kenyon:
-#     Tim:
+#     Kenyon: stock program. trying to figure out the best way
+#       to get the input
+#     Tim: stock program. trying to figure out the best way
+#       to get the input
 ###############################################################
 
 ##############################################################

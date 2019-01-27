@@ -14,6 +14,11 @@
 #include "dollars.h"   // for Dollars defined in StockTransaction
 #include "queue.h"     // for QUEUE
 #include <iostream>    // for ISTREAM and OSTREAM
+#include <vector>
+#include <string>
+#include <string.h>
+#include <sstream>  
+using namespace std;
 using namespace custom;
 struct stockData
 {
@@ -37,9 +42,12 @@ public:
    
    stock();
    // the interactive stock buy/sell function
+  
    void stocksBuySell();
+   vector <string> split(string s, char delimiter);
    float calcProfitLoss();
    void display();
+
 };
 
 

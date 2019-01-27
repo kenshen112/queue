@@ -13,9 +13,8 @@
 #include <cassert>     // for ASSERT
 #include "stock.h"     // for STOCK_TRANSACTION
 #include "queue.h"     // for QUEUE
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+
+
 using namespace std; // Bad CS teacher's don't make me sick stack overflow on you
 
 
@@ -54,31 +53,36 @@ void stock::stocksBuySell()
    cout << "  quit            - Display a final report and quit the program\n";
 
    stockData temp;
-   float price;
-   string s;
+   string str;
 
-   //string to float var
-   string sf;
+
    //main input loop for stock
    do
    {
       std::cout << "> ";
-      std::cin >> s;
-      std::string delimiter = " ";
-      std::string token = s.substr(0, s.find(delimiter));
+      std::cin >> str;
 
-      if (findObject(temp.input.c_str(), "sell"))
+      /*std::string delimiter = " ";
+      std::string shares = s.substr(1, s.find(delimiter));
+      std::string price = s.substr(2, s.find(delimiter));
+      */
+      vector<string> sep = split(str, ' ');
+      for (int i = 0; i < sep.size(); ++i)
+         cout << sep[i] << endl;
+      if (findObject(str.c_str(), "sell"))
       {
-         sf = (token[1]);
-         temp.sellPrice = std::stof(sf);
+         //sf = (shares);
+         //temp.numShares = std::stof(sep[1]);
+         //temp.purchasePrice = std::stof(sep[2]);
       }
 
-	  else if (findObject(temp.input.c_str(), "buy")) 
+	  else if (findObject(str.c_str(), "buy")) 
       {
-         sf = (token[1]);
-         temp.purchasePrice = std::stof(sf);
+         //sf = (shares);
+         //temp.numShares = std::stof(sep[1]);
+         //temp.purchasePrice = std::stof(sep[2]);
       }
-      else if (findObject(temp.input.c_str(), "display"))
+      else if (findObject(str.c_str(), "display"))
       {
          display();
       }
@@ -86,6 +90,19 @@ void stock::stocksBuySell()
       data.push(temp);
    } while (temp.input != "quit");
 
+}
+
+vector<string> stock::split(string s, char delimiter)
+{
+   vector<string> internal;
+   stringstream ss(s); // Turn the string into a stream.
+   string tok;
+
+   while (getline(ss, tok, delimiter)) {
+      internal.push_back(tok);
+   }
+
+   return internal;
 }
 
 float stock::calcProfitLoss()
