@@ -35,7 +35,6 @@ bool findObject(const char *ob, const char* recieve)
 	}
 }
 
-
 stock::stock()
 {
 
@@ -58,14 +57,16 @@ void stock::stocksBuySell()
 
    stockData stocks;
    string str;
-   string test = "This is making me mad!";
    string inputArr[4];  //array for input tokens
-
+   string x;
+   cin.ignore();
    //main input loop for stock
    do
    {
+      
       std::cout << "> ";
-      std::getline(cin, str);
+      
+      std::getline(std::cin, str);
 
       std::istringstream stm(str);
               
@@ -89,6 +90,7 @@ void stock::stocksBuySell()
       {
          stocks.numShares = std::stof(inputArr[1]);
          stocks.purchasePrice = std::stof(inputArr[2]);
+
       }
       else if (inputArr[0] == "display")
       {
