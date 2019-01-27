@@ -48,17 +48,17 @@ void stock::stocksBuySell()
 
    float price;
    std::cout << "> ";
-   std::cin >> input >> numShares >> price;
+   std::cin >> data[].input >> data[].numShares >> price;
 
 
-   if (input == "sell")
+   if (data[].input == "sell")
    {
-	   sellPrice = price;
+	   data[].sellPrice = data[].price;
    }
 
-   else if (input == "buy")
+   else if (data[].input == "buy")
    {
-	   purchasePrice = price;
+	   data[].purchasePrice = price;
    }
 }
 
