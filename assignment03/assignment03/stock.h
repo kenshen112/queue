@@ -15,17 +15,23 @@
 #include "queue.h"     // for QUEUE
 #include <iostream>    // for ISTREAM and OSTREAM
 
+struct stockData
+{
+	std::string input;
+	float profitLoss;
+	Dollars money;
+	float purchasePrice;
+	float sellPrice;
+	int numShares;
+	int amount;
+};
+
+
 class stock
 {
 private:   
    //variables
-   std::string input;
-   float profitLoss;
-   Dollars money;
-   float purchasePrice;
-   float sellPrice;
-   int numShares;
-   int amount;
+	queue <stockData> data;
 
 public:
    // the interactive stock buy/sell function
