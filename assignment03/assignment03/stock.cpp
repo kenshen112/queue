@@ -13,6 +13,8 @@
 #include <cassert>     // for ASSERT
 #include "stock.h"     // for STOCK_TRANSACTION
 #include "queue.h"     // for QUEUE
+#include <stdlib.h>
+#include <stdio.h>
 using namespace std; // Bad CS teacher's don't make me sick stack overflow on you
 
 
@@ -54,6 +56,9 @@ void stock::stocksBuySell()
    stockData temp;
    float price;
    string s;
+
+   //string to float var
+   string sf;
    //main input loop for stock
    do
    {
@@ -62,18 +67,18 @@ void stock::stocksBuySell()
       std::string delimiter = " ";
       std::string token = s.substr(0, s.find(delimiter));
 
-      
-      price = 0.00;
-
-      if (token[0] == 'sell')
+      if (findObject(temp.input.c_str(), "sell"))
       {
-	      temp.sellPrice = price;
+         sf = (token[1]);
+         temp.sellPrice = std::stof(sf);
       }
 
-	  else if (token[0] == 'buy') {
-	      temp.purchasePrice = price;
+	  else if (findObject(temp.input.c_str(), "buy")) 
+      {
+         sf = (token[1]);
+         temp.purchasePrice = std::stof(sf);
       }
-      else if (token[0] == 'display')
+      else if (findObject(temp.input.c_str(), "display"))
       {
          display();
       }
