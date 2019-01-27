@@ -31,7 +31,6 @@ bool findObject(const char *ob, const char* recieve)
 }
 
 
-
 /************************************************
  * STOCKS BUY SELL
  * The interactive function allowing the user to
@@ -74,4 +73,26 @@ float stock::calcProfitLoss()
 
 void stock::display()
 {
+
+	//std::cout << "Currently held: " << std::endl;
+
+	//for (somthing with the queue?)
+		//{
+	         //std::cout << "        Bought " << queue.amount << " shares at " << "$" << queue.profitLoss << std::endl; ? 
+        //}
+
+	//if (sold)
+	//{
+
+	//std::cout << "Sell History: " << std::endl;
+	//for (int i = 0; i < queueSize; i++)
+	//{
+	
+	//std::cout << "        Sold " << queue.amount << " shares at " << "$" << queue.profitLoss << std::endl; ?
+	
+	//}
+	
+	//}
+
+
 }
