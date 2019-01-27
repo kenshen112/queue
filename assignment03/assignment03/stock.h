@@ -22,13 +22,13 @@ using namespace std;
 using namespace custom;
 struct stockData
 {
-	std::string input;
-	float profitLoss;
-	Dollars money;
-	float purchasePrice;
-	float sellPrice;
-	int numShares;
-	int amount;
+
+	Dollars proceeds;          //running total
+   Dollars profitLoss;        //used in display and calc as profit or loss for a sale
+	Dollars purchasePrice;     //purchase price of stock
+	Dollars sellPrice;         //selling price of stock
+	int numShares;             //num of shares purchased/sold
+	int totalShares;           //total shares. not sure if we need this
 };
 
 
