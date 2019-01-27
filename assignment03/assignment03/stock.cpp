@@ -78,13 +78,16 @@ float stock::calcProfitLoss()
 
 void stock::display()
 {
+	std::cout << "Currently held: " << std::endl;
 
-	//std::cout << "Currently held: " << std::endl;
+	queue <stockData> temp = data;
 
-	//for (somthing with the queue?)
-		//{
-	         //std::cout << "        Bought " << queue.amount << " shares at " << "$" << queue.profitLoss << std::endl; ? 
-        //}
+
+	for (int i = 0; i < temp.size(); i++)	
+	{
+	         std::cout << "        Bought " << temp.front.amount << " shares at " << "$" << temp.front.profitLoss << std::endl;  
+			 temp.pop();
+	}
 
 	//if (sold)
 	//{
