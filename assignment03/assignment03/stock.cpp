@@ -53,23 +53,27 @@ void stock::stocksBuySell()
 
    stockData temp;
    float price;
-
+   string s;
    //main input loop for stock
    do
    {
       std::cout << "> ";
-      std::cin >> temp.input;
+      std::cin >> s;
+      std::string delimiter = " ";
+      std::string token = s.substr(0, s.find(delimiter));
+
+      
       price = 0.00;
 
-      if (findObject(temp.input.c_str(), "sell"))
+      if (token[0] == 'sell')
       {
 	      temp.sellPrice = price;
       }
 
-	  else if (findObject(temp.input.c_str(), "buy")) {
+	  else if (token[0] == 'buy') {
 	      temp.purchasePrice = price;
       }
-      else if (findObject(temp.input.c_str(), "display"))
+      else if (token[0] == 'display')
       {
          display();
       }
