@@ -70,3 +70,7 @@ float stock::calcProfitLoss()
 
    return profitLoss;
 }
+
+void stock::display()
+{
+}
