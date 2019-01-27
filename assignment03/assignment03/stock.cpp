@@ -15,8 +15,8 @@
 #include "queue.h"     // for QUEUE
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 using namespace std; // Bad CS teacher's don't make me sick stack overflow on you
-
 
 
 bool findObject(const char *ob, const char* recieve)
