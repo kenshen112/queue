@@ -17,7 +17,7 @@ using namespace std; // Bad CS teacher's don't make me sick stack overflow on yo
 
 
 
-bool findObject(const char *ob, const char* recieve)
+/*bool findObject(const char *ob, const char* recieve)
 {
 	if (strstr(recieve, ob) != NULL)//getting error in linux with this one
 
@@ -29,8 +29,13 @@ bool findObject(const char *ob, const char* recieve)
 	{
 		return false;
 	}
-}
+}*/
 
+
+stock::stock()
+{
+
+}
 
 /************************************************
  * STOCKS BUY SELL
@@ -48,24 +53,31 @@ void stock::stocksBuySell()
    cout << "  quit            - Display a final report and quit the program\n";
 
    stockData temp;
-   
-   
    float price;
-   std::cout << "> ";
-   std::cin >> temp.input >> temp.numShares >> price;
 
-
-   if (temp.input == "sell")
+   //main input loop for stock
+   do
    {
-	   temp.sellPrice = price;
-   }
+      std::cout << "> ";
+      std::cin >> temp.input >> temp.numShares >> price;
+      //std::cout << "Input is: " << temp.input << "\n";
 
-   else if (temp.input == "buy")
-   {
-	   temp.purchasePrice = price;
-   }
+      if (temp.input == "sell")
+      {
+	      temp.sellPrice = price;
+      }
 
-   data.push(temp);
+      else if (temp.input == "buy")
+      {
+	      temp.purchasePrice = price;
+      }
+      else if (temp.input == "display")
+      {
+         display();
+      }
+
+      data.push(temp);
+   } while (temp.input != "quit");
 
 }
 

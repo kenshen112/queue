@@ -34,6 +34,8 @@ private:
 	queue <stockData> data;
 
 public:
+   
+   stock();
    // the interactive stock buy/sell function
    void stocksBuySell();
    float calcProfitLoss();
