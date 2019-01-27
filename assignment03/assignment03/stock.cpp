@@ -7,12 +7,16 @@
  * Author
  *    Tim O'Barr and Kenyon Bunker
  **********************************************************************/
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>    // for ISTREAM, OSTREAM, CIN, and COUT
 #include <string>      // for STRING
 #include <cassert>     // for ASSERT
 #include "stock.h"     // for STOCK_TRANSACTION
 #include "queue.h"     // for QUEUE
+#include <vector>
+#include <string>
+#include <sstream>
+#include <iterator>
 
 
 using namespace std; // Bad CS teacher's don't make me sick stack overflow on you
@@ -52,43 +56,47 @@ void stock::stocksBuySell()
    cout << "  display         - Display your current stock portfolio\n";
    cout << "  quit            - Display a final report and quit the program\n";
 
-   stockData temp;
+   stockData stocks;
    string str;
-
+   string test = "This is making me mad!";
+   string inputArr[4];  //array for input tokens
 
    //main input loop for stock
    do
    {
       std::cout << "> ";
-      std::cin >> str;
+      std::getline(cin, str);
 
-      /*std::string delimiter = " ";
-      std::string shares = s.substr(1, s.find(delimiter));
-      std::string price = s.substr(2, s.find(delimiter));
-      */
-      vector<string> sep = split(str, ' ');
-      for (int i = 0; i < sep.size(); ++i)
-         cout << sep[i] << endl;
-      if (findObject(str.c_str(), "sell"))
+      std::istringstream stm(str);
+              
+      string inputPart;          //parts of the array
+      int i = 0;                 //counter for while
+      while (stm >> inputPart) // read white-space delimited tokens one by one 
       {
-         //sf = (shares);
-         //temp.numShares = std::stof(sep[1]);
-         //temp.purchasePrice = std::stof(sep[2]);
+         inputArr[i] = inputPart;
+         i++;
       }
 
-	  else if (findObject(str.c_str(), "buy")) 
+      // 0 = selection :: 1 = numShares :: 2 = price
+      if (inputArr[0] == "sell")
       {
-         //sf = (shares);
-         //temp.numShares = std::stof(sep[1]);
-         //temp.purchasePrice = std::stof(sep[2]);
+
+         stocks.numShares = std::stof(inputArr[1]);
+         stocks.purchasePrice = std::stof(inputArr[2]);
       }
-      else if (findObject(str.c_str(), "display"))
+
+	  else if (inputArr[0] == "buy")
+      {
+         stocks.numShares = std::stof(inputArr[1]);
+         stocks.purchasePrice = std::stof(inputArr[2]);
+      }
+      else if (inputArr[0] == "display")
       {
          display();
       }
 
-      data.push(temp);
-   } while (temp.input != "quit");
+      data.push(stocks);
+   } while (inputArr[0] != "quit");
 
 }
 
@@ -108,8 +116,6 @@ vector<string> stock::split(string s, char delimiter)
 float stock::calcProfitLoss()
 { 
 
-
-
    this->data.front().profitLoss = (data.front().sellPrice - data.front().purchasePrice) * data.front().numShares;
 
    return this->data.front().profitLoss += data.front().profitLoss;
@@ -120,13 +126,13 @@ void stock::display()
 {
 	std::cout << "Currently held: " << std::endl;
 
-	queue <stockData> temp = data;
+	queue <stockData> stocks = data;
 
 
-	for (int i = 0; i < temp.size(); i++)	
+	for (int i = 0; i < stocks.size(); i++)	
 	{
-	         std::cout << "        Bought " << temp.front().amount << " shares at " << "$" << temp.front().profitLoss << std::endl;  
-			 temp.pop();
+	         std::cout << "        Bought " << stocks.front().amount << " shares at " << "$" << stocks.front().profitLoss << std::endl;  
+			 stocks.pop();
 	}
 
 	return;
