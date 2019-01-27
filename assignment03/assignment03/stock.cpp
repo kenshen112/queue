@@ -19,7 +19,8 @@ using namespace std; // Bad CS teacher's don't make me sick stack overflow on yo
 
 bool findObject(const char *ob, const char* recieve)
 {
-	if (strstr(recieve, ob) != NULL)
+	if (strstr(recieve, ob) != NULL)//getting error in linux with this one
+
 	{
 		return true;
 	}
