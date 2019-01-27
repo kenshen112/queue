@@ -70,9 +70,10 @@ void stock::stocksBuySell()
 
 float stock::calcProfitLoss()
 { 
-   profitLoss = (sellPrice - purchasePrice) * numShares;
+   //profitLoss = (sellPrice - purchasePrice) * numShares;
 
-   return this->profitLoss += profitLoss;
+   //return this->profitLoss += profitLoss;
+   return 0.0f;
 }
 
 void stock::display()
