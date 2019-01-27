@@ -65,8 +65,7 @@ void stock::stocksBuySell()
 
 float stock::calcProfitLoss()
 { 
-   int sellBatches[];
    (sellPrice - purchasePrice) * numShares;
 
-   return profitLoss;
+   return profitLoss += profitLoss;
 }
