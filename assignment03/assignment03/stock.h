@@ -2,10 +2,11 @@
  * Header:
  *    STOCK
  * Summary:
- *    This will contain just the prototype for stocksBuySell(). You may
- *    want to put other class definitions here as well.
+ *    Holds variables for  stock data and functions for the pruchase
+ *    and sale of stocks, and displays that data.
  * Author
- *    <your names here>
+ *    Tim O'Barr
+ *    Kenyon Bunker
  ************************************************************************/
 
 #ifndef STOCK_H
@@ -14,15 +15,18 @@
 #include "dollars.h"   // for Dollars defined in StockTransaction
 #include "queue.h"     // for QUEUE
 #include <iostream>    // for ISTREAM and OSTREAM
-#include <vector>
 #include <string>
 #include <string.h>
-#include <sstream>  
+#include <sstream>
 using namespace std;
 using namespace custom;
+
+/***********************************************
+* Structure STOCKDATA
+* holds stock data
+***********************************************/
 struct stockData
 {
-
 	Dollars proceeds;          //running total
    Dollars profitLoss;        //used in display and calc as profit or loss for a sale
 	Dollars purchasePrice;     //purchase price of stock
@@ -31,25 +35,23 @@ struct stockData
 	int totalShares;           //total shares. not sure if we need this
 };
 
-
+/***********************************************
+* Main stock body
+***********************************************/
 class stock
 {
 private:   
    //variables
-	queue <stockData> data;
+	queue <stockData> data;    //creates queue of stockData
 
-public:
-   
+public: 
+   //Cosntructors
    stock();
-   // the interactive stock buy/sell function
-  
-   void stocksBuySell();
-   vector <string> split(string s, char delimiter);
-   float calcProfitLoss();
-   void display();
 
+   //Prototype functions
+   void stocksBuySell();         // the interactive stock buy/sell function
+   float calcProfitLoss();       // Calculates the profit and loss of purchased and sold stocks
+   void display();               //Displays currently held, sell history, and proceeds of stocks
 };
-
-
 #endif // STOCK_H
 

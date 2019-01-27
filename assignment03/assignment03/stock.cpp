@@ -13,14 +13,12 @@
 #include <cassert>     // for ASSERT
 #include "stock.h"     // for STOCK_TRANSACTION
 #include "queue.h"     // for QUEUE
-#include <vector>
+//#include <vector>
 #include <string>
-#include <sstream>
-#include <iterator>
-
+//#include <sstream>
+//#include <iterator>
 
 using namespace std; // Bad CS teacher's don't make me sick stack overflow on you
-
 
 bool findObject(const char *ob, const char* recieve)
 {
@@ -34,7 +32,9 @@ bool findObject(const char *ob, const char* recieve)
 		return false;
 	}
 }
-
+/************************************************
+* Default Constructor
+***********************************************/
 stock::stock()
 {
 
@@ -55,11 +55,11 @@ void stock::stocksBuySell()
    cout << "  display         - Display your current stock portfolio\n";
    cout << "  quit            - Display a final report and quit the program\n";
 
-   stockData sData;
-   string str;
+   stockData sData;     //holds stock data
+   string str;          //input data
    string inputArr[4];  //array for input tokens
-   string x;
-   cin.ignore();
+   cin.ignore();        //because cin is weird
+
    //main input loop for stock
    do
    {
@@ -78,7 +78,7 @@ void stock::stocksBuySell()
          i++;
       }
 
-      // 0 = selection :: 1 = numShares :: 2 = price
+      // 0 = selection :: 1 = numShares :: 2 = stock price
       if (inputArr[0] == "sell")
       {
 
@@ -99,34 +99,26 @@ void stock::stocksBuySell()
          display();
       }
 
-      
    } while (inputArr[0] != "quit");
 
 }
-
-vector<string> stock::split(string s, char delimiter)
-{
-   vector<string> internal;
-   stringstream ss(s); // Turn the string into a stream.
-   string tok;
-
-   while (getline(ss, tok, delimiter)) {
-      internal.push_back(tok);
-   }
-
-   return internal;
-}
-
+/***********************************************
+* STOCK :: calcProfitLoss
+* Calculates the profit, loss and proceeds
+* associated with buying and selling stocks
+***********************************************/
 float stock::calcProfitLoss()
 { 
-
    this->data.front().profitLoss = (data.front().sellPrice - data.front().purchasePrice) * data.front().numShares;
 
    //return this->data.front().profitLoss += data.front().profitLoss;
-   return 0.0f;
-   
+   return 0.0f; 
 }
 
+/***********************************************
+* STOCK :: display
+* displays stock data
+***********************************************/
 void stock::display()
 {
 	std::cout << "Currently held: " << std::endl;
