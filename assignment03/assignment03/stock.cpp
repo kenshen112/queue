@@ -85,7 +85,7 @@ void stock::display()
 
 	for (int i = 0; i < temp.size(); i++)	
 	{
-	         std::cout << "        Bought " << temp.front.amount << " shares at " << "$" << temp.front.profitLoss << std::endl;  
+	         std::cout << "        Bought " << temp.front().amount << " shares at " << "$" << temp.front().profitLoss << std::endl;  
 			 temp.pop();
 	}
 

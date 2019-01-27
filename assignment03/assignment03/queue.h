@@ -24,7 +24,6 @@ private:
    void resize(int newCapacity);
    int iHead();
    int iTail();
-   bool full();
 public:
    //Constructors
    //Default Cosntructor
