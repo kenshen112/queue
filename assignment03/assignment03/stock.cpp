@@ -55,7 +55,7 @@ void stock::stocksBuySell()
    cout << "  display         - Display your current stock portfolio\n";
    cout << "  quit            - Display a final report and quit the program\n";
 
-   stockData stocks;
+   stockData sData;
    string str;
    string inputArr[4];  //array for input tokens
    string x;
@@ -82,14 +82,16 @@ void stock::stocksBuySell()
       if (inputArr[0] == "sell")
       {
 
-         stocks.numShares = std::stof(inputArr[1]);
-         stocks.purchasePrice = std::stof(inputArr[2]);
+         sData.numShares = std::stof(inputArr[1]);
+         sData.purchasePrice = std::stof(inputArr[2]);
+         data.pop();
       }
 
 	  else if (inputArr[0] == "buy")
       {
-         stocks.numShares = std::stof(inputArr[1]);
-         stocks.purchasePrice = std::stof(inputArr[2]);
+         sData.numShares = std::stof(inputArr[1]);
+         sData.purchasePrice = std::stof(inputArr[2]);
+         data.push(sData);
 
       }
       else if (inputArr[0] == "display")
@@ -97,7 +99,7 @@ void stock::stocksBuySell()
          display();
       }
 
-      data.push(stocks);
+      
    } while (inputArr[0] != "quit");
 
 }
