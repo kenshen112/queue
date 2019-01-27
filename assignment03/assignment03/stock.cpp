@@ -17,10 +17,9 @@ using namespace std; // Bad CS teacher's don't make me sick stack overflow on yo
 
 
 
-/*bool findObject(const char *ob, const char* recieve)
+bool findObject(const char *ob, const char* recieve)
 {
 	if (strstr(recieve, ob) != NULL)//getting error in linux with this one
-
 	{
 		return true;
 	}
@@ -29,7 +28,7 @@ using namespace std; // Bad CS teacher's don't make me sick stack overflow on yo
 	{
 		return false;
 	}
-}*/
+}
 
 
 stock::stock()
@@ -62,16 +61,15 @@ void stock::stocksBuySell()
       std::cin >> temp.input;
       price = 0.00;
 
-      if (temp.input == "sell")
+      if (findObject(temp.input.c_str(), "sell"))
       {
 	      temp.sellPrice = price;
       }
 
-      else if (temp.input == "buy")
-      {
+	  else if (findObject(temp.input.c_str(), "buy")) {
 	      temp.purchasePrice = price;
       }
-      else if (temp.input == "display")
+      else if (findObject(temp.input.c_str(), "display"))
       {
          display();
       }
@@ -101,6 +99,8 @@ void stock::display()
 	         std::cout << "        Bought " << temp.front().amount << " shares at " << "$" << temp.front().profitLoss << std::endl;  
 			 temp.pop();
 	}
+
+	return;
 
 	//if (sold)
 	//{
