@@ -93,7 +93,8 @@ void stock::stocksBuySell()
 	      soldCounter++;     
       }
 
-	  else if (inputArr[0] == "buy")
+
+      else if (inputArr[0] == "buy")
       {
          sData.numShares = atof(inputArr[1].c_str());
          sData.purchasePrice = atof(inputArr[2].c_str());
@@ -145,7 +146,7 @@ void stock::display()
 	   std::cout << "Sell History:" << std::endl;
 	   for (int i = 0; i < stocks.size(); i++)
 	     {
-	       std::cout << "Sold " << stocks.front().numShares << " shares at " << stocks.front().purchasePrice << std::endl;
+	       std::cout << "Sold " << sellHistory[i].numShares << " shares at " << sellHistory[i].purchasePrice << std::endl;
 	     }
 
 	 }
