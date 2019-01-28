@@ -17,6 +17,11 @@
 #       to get the input
 #     Tim: stock program. trying to figure out the best way
 #       to get the input
+#     Both: Had issue with displaying Dollars in testBed. It
+#       would display fine in VS and on Tims linux system
+#       but not in testbed. You'll notice that in Current 
+#       history the dollar amout shows 0 but in VS and linux
+#       it does not. Any ideas?
 ###############################################################
 
 ##############################################################
