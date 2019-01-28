@@ -134,7 +134,7 @@ void stock::display()
 			 stocks.pop();
 	}
 
-	//std::cout << "Proceeds: " << proceeds << std::endl;
+	std::cout << "Proceeds: " << stocks.front().proceeds << std::endl;
 	
        if (sold)
 	 {
