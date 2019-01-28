@@ -127,10 +127,10 @@ void stock::display()
 
 	queue <stockData> stocks = data;
 
-
-	for (int i = 0; i < stocks.size(); i++)	
+   int s = stocks.size();
+	for (int i = 0; i < s; i++)	
 	{
-	         std::cout << "\tBought " << stocks.front().numShares << " shares at " << stocks.front().purchasePrice << std::endl;  
+	         std::cout << "\tBought " << stocks.front().numShares << " shares at " << stocks.front().purchasePrice << std::endl;
 			 stocks.pop();
 	}
 
