@@ -28,7 +28,6 @@ using namespace custom;
 ***********************************************/
 struct stockData
 {
-	
    Dollars profitLoss;        //used in display and calc as profit or loss for a sale
 	Dollars purchasePrice;     //purchase price of stock
 	Dollars sellPrice;         //selling price of stock

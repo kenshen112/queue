@@ -18,20 +18,8 @@
 //#include <sstream>
 //#include <iterator>
 
-using namespace std; // Bad CS teacher's don't make me sick stack overflow on you
+using namespace std;
 
-bool findObject(const char *ob, const char* recieve)
-{
-	if (strstr(recieve, ob) != NULL)//getting error in linux with this one
-	{
-		return true;
-	}
-
-	else
-	{
-		return false;
-	}
-}
 /************************************************
 * Default Constructor
 ***********************************************/
@@ -140,14 +128,13 @@ void stock::display()
 
 	std::cout << "Proceeds: " << proceeds << std::endl;
 	
-       if (sold)
-	 {
+   if (sold)
+	{
 	   std::cout << "Sell History:" << std::endl;
 	   for (int i = 0; i < soldCounter; i++)
-	     {
-	       std::cout << "Sold " << sellHistory[i].numShares << " shares at " << sellHistory[i].purchasePrice << std::endl;
-	     }
-
-	 }
-
+	   {
+	      std::cout << "Sold " << sellHistory[i].numShares << " shares at " << sellHistory[i].purchasePrice << std::endl;
+	   }
+	}
+   std::cout << "Proceeds: " << proceeds << std::endl;
 }
