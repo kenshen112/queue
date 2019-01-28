@@ -82,15 +82,15 @@ void stock::stocksBuySell()
       if (inputArr[0] == "sell")
       {
 
-         sData.numShares = std::stof(inputArr[1]);
-         sData.purchasePrice = std::stof(inputArr[2]);
+         sData.numShares = atof(inputArr[1].c_str());
+         sData.purchasePrice = atof(inputArr[2].c_str());
          data.pop();
       }
 
 	  else if (inputArr[0] == "buy")
       {
-         sData.numShares = std::stof(inputArr[1]);
-         sData.purchasePrice = std::stof(inputArr[2]);
+         sData.numShares = atof(inputArr[1].c_str());
+         sData.purchasePrice = atof(inputArr[2].c_str());
          data.push(sData);
 
       }
