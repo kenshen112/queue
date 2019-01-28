@@ -37,7 +37,10 @@ bool findObject(const char *ob, const char* recieve)
 ***********************************************/
 stock::stock()
 {
-
+   sold = false;
+   boughtCounter = 0;
+   soldCounter = 0;
+   proceeds = 0;
 }
 
 /************************************************
@@ -134,7 +137,7 @@ void stock::display()
 			 stocks.pop();
 	}
 
-	std::cout << "Proceeds: " << stocks.front().proceeds << std::endl;
+	std::cout << "Proceeds: " << proceeds << std::endl;
 	
        if (sold)
 	 {

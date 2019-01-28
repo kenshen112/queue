@@ -27,7 +27,7 @@ using namespace custom;
 ***********************************************/
 struct stockData
 {
-	Dollars proceeds;          //running total
+	
    Dollars profitLoss;        //used in display and calc as profit or loss for a sale
 	Dollars purchasePrice;     //purchase price of stock
 	Dollars sellPrice;         //selling price of stock
@@ -46,6 +46,7 @@ private:
 	bool sold;
 	int boughtCounter;
 	int soldCounter;
+   Dollars proceeds;          //running total
 public: 
    //Cosntructors
    stock();
