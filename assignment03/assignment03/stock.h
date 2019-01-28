@@ -33,7 +33,6 @@ struct stockData
 	Dollars sellPrice;         //selling price of stock
 	int numShares;             //num of shares purchased/sold
 	int totalShares;           //total shares. not sure if we need this
-   bool sold;
 };
 
 /***********************************************
@@ -44,7 +43,8 @@ class stock
 private:   
    //variables
 	queue <stockData> data;    //creates queue of stockData
-
+	bool sold;
+	
 public: 
    //Cosntructors
    stock();
