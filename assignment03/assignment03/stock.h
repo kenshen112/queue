@@ -44,7 +44,8 @@ private:
    //variables
 	queue <stockData> data;    //creates queue of stockData
 	bool sold;
-	
+	int boughtCounter;
+	int soldCounter;
 public: 
    //Cosntructors
    stock();
