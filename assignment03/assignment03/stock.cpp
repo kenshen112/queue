@@ -132,8 +132,7 @@ void stock::display()
 
 	queue <stockData> stocks = data;
 
-   int s = stocks.size();
-	for (int i = 0; i < s; i++)	
+	for (int i = 0; i < boughtCounter; i++)	
 	{
 	         std::cout << "\tBought " << stocks.front().numShares << " shares at " << stocks.front().purchasePrice << std::endl;
 			 stocks.pop();
@@ -144,7 +143,7 @@ void stock::display()
        if (sold)
 	 {
 	   std::cout << "Sell History:" << std::endl;
-	   for (int i = 0; i < stocks.size(); i++)
+	   for (int i = 0; i < soldCounter; i++)
 	     {
 	       std::cout << "Sold " << sellHistory[i].numShares << " shares at " << sellHistory[i].purchasePrice << std::endl;
 	     }
