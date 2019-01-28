@@ -128,7 +128,7 @@ void stock::display()
 
 	for (int i = 0; i < stocks.size(); i++)	
 	{
-	         std::cout << "Bought " << stocks.front().numShares << " shares at " << stocks.front().profitLoss << std::endl;  
+	         std::cout << "\tBought " << stocks.front().numShares << " shares at " << stocks.front().profitLoss << std::endl;  
 			 stocks.pop();
 	}
 
