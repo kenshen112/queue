@@ -88,8 +88,9 @@ void stock::stocksBuySell()
          sData.numShares = atof(inputArr[1].c_str());
          sData.purchasePrice = atof(inputArr[2].c_str());
          sold = true;
-         data.pop();
-	 soldCounter++;         
+         sellHistory.push_back(sData);
+         //data.pop();
+	      soldCounter++;     
       }
 
 	  else if (inputArr[0] == "buy")

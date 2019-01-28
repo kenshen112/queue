@@ -18,6 +18,7 @@
 #include <string>
 #include <string.h>
 #include <sstream>
+#include <vector>
 using namespace std;
 using namespace custom;
 
@@ -47,6 +48,7 @@ private:
 	int boughtCounter;
 	int soldCounter;
    Dollars proceeds;          //running total
+   vector <stockData> sellHistory;
 public: 
    //Cosntructors
    stock();
